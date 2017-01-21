@@ -61,11 +61,27 @@ public class DriveTrain extends Subsystem implements RobotMap
 		resetPos();
 		backLeft.configMaxOutputVoltage(9);
 		backRight.configMaxOutputVoltage(9);
-		
+		//backLeft.setPID(dP, I, D);
+		//backRight.setPID(dP, I, D);
+		System.out.println("Talons set to autonomous mode.");
+		backLeft.changeControlMode(CANTalon.TalonControlMode.Position);
+		backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
+		frontLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
+		frontRight.changeControlMode(CANTalon.TalonControlMode.Position);
+		backLeft.setAllowableClosedLoopErr(100);
+		backRight.setAllowableClosedLoopErr(100);
+		SmartDashboard.putNumber("BackLeft Position: ", backLeft.getPosition());
+		SmartDashboard.putNumber("BackRight Position: ", backRight.getPosition());
 	}
 	public void setManual()
 	{
-		
+		backLeft.configMaxOutputVoltage(13);
+		backRight.configMaxOutputVoltage(13);
+		System.out.println("Talons set to manual mode.");
+		frontLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		frontRight.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		backLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		backRight.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 	}
 	protected void initDefaultDrive()
 	{
