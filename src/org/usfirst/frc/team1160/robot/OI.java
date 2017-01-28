@@ -12,27 +12,22 @@ public class OI implements RobotMap
 {
 	public static OI instance;
 	ModifiedJoystick stick;
-	//JoystickButton intake, cradleUp, cradleDown, shoot, armDown, armUp, stop, spit, lowGoal;
-	//change this later
+	
 	
 	public static OI getInstance()
 	{
-		if (instance == null)
-		{
+		if (instance == null){
 			instance =  new OI();
 		}
 		return instance;
 	}
-	private OI()
-	{
+	private OI(){
 		stick = new ModifiedJoystick(1);
 	}
-	public void buttons()
-	{
+	public void buttons(){
 		
 	}
-	public ModifiedJoystick getStick()
-	{
+	public ModifiedJoystick getStick(){
 		return stick;
 	}
 }
