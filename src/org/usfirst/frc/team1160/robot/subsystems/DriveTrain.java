@@ -42,25 +42,38 @@ public class DriveTrain extends Subsystem implements RobotMap{
 	 */
 	public void setAuto(){
 		resetPos();
-		//backLeft.configMaxOutputVoltage(9);
-		//backRight.configMaxOutputVoltage(9);
-		//backLeft.setPID(dP, I, D);
-		//backRight.setPID(dP, I, D);
+
+		frontLeft.setProfile(1);
+		frontRight.setProfile(1);
+
+		
 		System.out.println("Talons set to autonomous mode.");
 		frontLeft.changeControlMode(CANTalon.TalonControlMode.Position);
 		frontRight.changeControlMode(CANTalon.TalonControlMode.Position);
-		backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
-		backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
-		backLeft.setAllowableClosedLoopErr(100);
-		backRight.setAllowableClosedLoopErr(100);
+		
+		
+		frontLeft.setVoltageRampRate(6);
+		frontRight.setVoltageRampRate(6);
+		frontLeft.configMaxOutputVoltage(8);
+		frontRight.configMaxOutputVoltage(8);
+		
+		frontLeft.configEncoderCodesPerRev(256);
+		frontRight.configEncoderCodesPerRev(256);
+		
 	}
 	
 	public void setManual(){
+		frontLeft.setProfile(0);
+		frontRight.setProfile(0);
+		
 		frontLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		frontRight.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 		backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		frontRight.reverseSensor(false);
+		
+		frontLeft.configEncoderCodesPerRev(256);
+		frontRight.configEncoderCodesPerRev(256);
 	}
 	
 	/*
@@ -76,7 +89,7 @@ public class DriveTrain extends Subsystem implements RobotMap{
 	public void driveDistance(double distance){
 		// TODO After Closed Loop Control Works, tune this
 		frontLeft.set(distance);
-		frontRight.set(distance);
+		frontRight.set(-distance);
 	}
 
 	
@@ -101,11 +114,18 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		frontRight.set(DT_SCALE*(OI.getInstance().getStick().getZ() + OI.getInstance().getStick().getY()));
 		backRight.set(frontRight.getDeviceID());
 		
-		//System.out.println("Left Drive Traveled: " + frontLeft.getPosition()*DT_WHEEL_CIRC_FT + " feet.");
+		//System.out.println("Left Drive Position: " + frontLeft.getPosition()*DT_WHEEL_CIRC_FT + " feet.");
 		//System.out.println("Right Drive Position: " + frontRight.getPosition()*DT_WHEEL_CIRC_FT + " feet.");
 
+		//System.out.println("Left Drive Speed: " + frontLeft.getSpeed());
+		//System.out.println("Right Drive Speed: " + frontRight.getSpeed());
 	}
 	
+	public void printPosition(){
+		System.out.println("Left Position: " + frontLeft.getPosition());
+		System.out.println("Right Position: " + frontRight.getPosition());
+
+	}
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new ManualDrive());

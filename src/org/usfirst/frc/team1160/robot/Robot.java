@@ -35,9 +35,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		oi = OI.getInstance();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		dt = DriveTrain.getInstance();
+		
+		oi = OI.getInstance();
+
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
