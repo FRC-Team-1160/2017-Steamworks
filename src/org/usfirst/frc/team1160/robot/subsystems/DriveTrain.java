@@ -32,6 +32,9 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		
 		frontLeft.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		frontRight.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		frontLeft.configEncoderCodesPerRev(256);
+		frontRight.configEncoderCodesPerRev(256);
+
 	}
 	
 	/*
@@ -57,6 +60,7 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		frontRight.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 		backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
+		frontRight.reverseSensor(false);
 	}
 	
 	/*
@@ -92,10 +96,14 @@ public class DriveTrain extends Subsystem implements RobotMap{
 	 * Basic Teleop Functions
 	 */
 	public void manualDrive(){
-		frontLeft.set(.7*(OI.getInstance().getStick().getZ() - OI.getInstance().getStick().getY()));
-		backLeft.set(.7*(OI.getInstance().getStick().getZ() - OI.getInstance().getStick().getY()));
-		frontRight.set(.7*(OI.getInstance().getStick().getZ() + OI.getInstance().getStick().getY()));
-		backRight.set(.7*(OI.getInstance().getStick().getZ() + OI.getInstance().getStick().getY()));
+		frontLeft.set(DT_SCALE*(OI.getInstance().getStick().getZ() - OI.getInstance().getStick().getY()));
+		backLeft.set(frontLeft.getDeviceID());
+		frontRight.set(DT_SCALE*(OI.getInstance().getStick().getZ() + OI.getInstance().getStick().getY()));
+		backRight.set(frontRight.getDeviceID());
+		
+		//System.out.println("Left Drive Traveled: " + frontLeft.getPosition()*DT_WHEEL_CIRC_FT + " feet.");
+		//System.out.println("Right Drive Position: " + frontRight.getPosition()*DT_WHEEL_CIRC_FT + " feet.");
+
 	}
 	
 	@Override

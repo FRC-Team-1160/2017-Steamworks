@@ -37,6 +37,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = OI.getInstance();
 		chooser.addDefault("Default Auto", new ExampleCommand());
+		dt = DriveTrain.getInstance();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
@@ -99,6 +100,8 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		dt.resetPos();
+		dt.setManual();
 	}
 
 	/**
