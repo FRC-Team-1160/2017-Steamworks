@@ -25,7 +25,8 @@ public class OI implements RobotMap
 	}
 	private OI()
 	{
-		stick = new ModifiedJoystick(1);
+		stick = new ModifiedJoystick(0);
+		buttons(); //calls the buttons method
 	}
 	public void buttons()
 	{
