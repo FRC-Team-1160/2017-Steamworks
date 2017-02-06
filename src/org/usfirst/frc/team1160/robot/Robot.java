@@ -35,10 +35,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override //This is where Robot.java starts
 	public void robotInit() {
+<<<<<<< HEAD
 		oi = OI.getInstance();
 		//oi.buttons()
 		chooser = new SendableChooser();
+=======
+>>>>>>> 45af4924e0f0be7b3df6c270e102adf15cff77ee
 		chooser.addDefault("Default Auto", new ExampleCommand());
+		dt = DriveTrain.getInstance();
+		
+		oi = OI.getInstance();
+
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
@@ -101,6 +108,8 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		dt.resetPos();
+		dt.setManual();
 	}
 
 	/**

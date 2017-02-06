@@ -3,6 +3,7 @@ package org.usfirst.frc.team1160.robot;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team1160.robot.commands.ExampleCommand;
+import org.usfirst.frc.team1160.robot.commands.auto.DriveForward;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -12,28 +13,38 @@ public class OI implements RobotMap
 {
 	public static OI instance;
 	ModifiedJoystick stick;
-	//JoystickButton intake, cradleUp, cradleDown, shoot, armDown, armUp, stop, spit, lowGoal;
-	//change this later
+	JoystickButton drive;
+	
 	
 	public static OI getInstance()
 	{
-		if (instance == null)
-		{
+		if (instance == null){
 			instance =  new OI();
 		}
 		return instance;
 	}
+<<<<<<< HEAD
 	private OI()
 	{
 		stick = new ModifiedJoystick(0);
 		buttons(); //calls the buttons method
+=======
+	
+	private OI(){
+		stick = new ModifiedJoystick(0);
+		createButtons();
+>>>>>>> 45af4924e0f0be7b3df6c270e102adf15cff77ee
 	}
-	public void buttons()
-	{
-		
+	
+	public void createButtons(){
+		drive = new JoystickButton(stick,1);
+		assignButtons();
 	}
-	public ModifiedJoystick getStick()
-	{
+	
+	public void assignButtons(){
+		drive.whenPressed(new DriveForward(4));
+	}
+	public ModifiedJoystick getStick(){
 		return stick;
 	}
 }

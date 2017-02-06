@@ -4,9 +4,9 @@ import org.usfirst.frc.team1160.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class HumanDrive extends Command{
+public class ManualDrive extends Command{
 	
-	public HumanDrive(){
+	public ManualDrive(){
 		requires(Robot.dt);
 	}
 	
