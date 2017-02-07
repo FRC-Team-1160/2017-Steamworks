@@ -11,6 +11,14 @@ public class Shooter extends Subsystem {
     // here. Call these from Commands.
 	private static Shooter instance;
 	
+	public static Shooter getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new Shooter();
+		}
+		return instance;
+	}
 	
 
     public void initDefaultCommand() {

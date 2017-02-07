@@ -23,17 +23,17 @@ public class OI implements RobotMap
 		}
 		return instance;
 	}
-<<<<<<< HEAD
+
 	private OI()
 	{
 		stick = new ModifiedJoystick(0);
 		buttons(); //calls the buttons method
-=======
+
 	
 	private OI(){
 		stick = new ModifiedJoystick(0);
 		createButtons();
->>>>>>> 45af4924e0f0be7b3df6c270e102adf15cff77ee
+
 	}
 	
 	public void createButtons(){
