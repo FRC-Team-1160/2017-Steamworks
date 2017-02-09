@@ -12,6 +12,7 @@ import org.usfirst.frc.team1160.robot.subsystems.DriveTrain;
 
 import org.usfirst.frc.team1160.robot.commands.ExampleCommand;
 import org.usfirst.frc.team1160.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team1160.robot.subsystems.ServoSystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +26,7 @@ public class Robot extends IterativeRobot {
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static DriveTrain dt;
+	public static ServoSystem s;
 
 	Command autonomousCommand;
 	SendableChooser chooser;
@@ -35,7 +37,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override //This is where Robot.java starts
 	public void robotInit() {
-
+		s = ServoSystem.getInstance();
 		oi = OI.getInstance();
 		//oi.buttons()
 		chooser = new SendableChooser();
