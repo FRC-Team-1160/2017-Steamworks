@@ -13,6 +13,7 @@ import org.usfirst.frc.team1160.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1160.robot.commands.ExampleCommand;
 import org.usfirst.frc.team1160.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team1160.robot.subsystems.ServoSystem;
+import org.usfirst.frc.team1160.robot.subsystems.SparkSystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,7 +27,8 @@ public class Robot extends IterativeRobot {
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static DriveTrain dt;
-	public static ServoSystem s;
+	public static ServoSystem servo;
+	public static SparkSystem spark;
 
 	Command autonomousCommand;
 	SendableChooser chooser;
@@ -37,7 +39,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override //This is where Robot.java starts
 	public void robotInit() {
-		s = ServoSystem.getInstance();
+		servo = ServoSystem.getInstance();
 		oi = OI.getInstance();
 		chooser = new SendableChooser();
 		chooser.addDefault("Default Auto", new ExampleCommand());
@@ -77,7 +79,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		autonomousCommand = (Command) chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
