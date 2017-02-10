@@ -1,5 +1,4 @@
 //accidentally wrote the gear pickup code in the shooter code
-//so like replace this whenever -kyle
 
 package org.usfirst.frc.team1160.robot.subsystems;
 
@@ -9,25 +8,30 @@ import com.ctre.CANTalon;
 /**
  *
  */
-public class Shooter extends Subsystem {
-	private static Shooter instance;
+public class GearPickup extends Subsystem {
+	private static GearPickup instance;
 	private Spark spark;
 	private CANTalon talon;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	public static Shooter getInstance()
+	public static GearPickup getInstance()
 	{
 		if (instance == null)
 		{
-			instance = new Shooter();
+			instance = new GearPickup();
 		}
 		return instance;
 	}
-	private Shooter()
+	private GearPickup()
 	{
 		spark = new Spark(0);
 		talon = new CANTalon(0);
+	}
+	public void pickupGear()
+	{
+		spark.set(0.5);
+		talon.set(0.5);
 	}
 	
 	

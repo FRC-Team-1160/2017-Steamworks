@@ -12,6 +12,7 @@ import org.usfirst.frc.team1160.robot.subsystems.DriveTrain;
 
 import org.usfirst.frc.team1160.robot.commands.ExampleCommand;
 import org.usfirst.frc.team1160.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team1160.robot.subsystems.GearPickup;
 import org.usfirst.frc.team1160.robot.subsystems.ServoSystem;
 import org.usfirst.frc.team1160.robot.subsystems.SparkSystem;
 
@@ -29,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain dt;
 	public static ServoSystem servo;
 	public static SparkSystem spark;
+	public static GearPickup gear;
 
 	Command autonomousCommand;
 	SendableChooser chooser;
@@ -39,6 +41,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override //This is where Robot.java starts
 	public void robotInit() {
+		gear = GearPickup.getInstance();
 		servo = ServoSystem.getInstance();
 		oi = OI.getInstance();
 		chooser = new SendableChooser();
