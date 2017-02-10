@@ -1,6 +1,5 @@
 package org.usfirst.frc.team1160.robot;
 
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team1160.robot.commands.ExampleCommand;
 import org.usfirst.frc.team1160.robot.commands.ServoAngle;
@@ -30,7 +29,6 @@ public class OI implements RobotMap
 	private OI(){
 		stick = new ModifiedJoystick(0);
 		createButtons();
-
 	}
 	
 	public void createButtons(){
@@ -42,8 +40,8 @@ public class OI implements RobotMap
 	
 	public void assignButtons(){
 		drive.whenPressed(new DriveForward(4));
-		gearDefault.toggleWhenPressed(new ServoDefault());
-		gearAngle.toggleWhenPressed(new ServoAngle());
+		gearDefault.whenPressed(new ServoDefault());
+		gearAngle.whenPressed(new ServoAngle());
 	}
 	public ModifiedJoystick getStick(){
 		return stick;

@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1160.robot.subsystems;
 
-import org.usfirst.frc.team1160.robot.commands.ServoDefault;
+import org.usfirst.frc.team1160.robot.Robot;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -13,7 +13,7 @@ public class ServoSystem extends Subsystem {
 	private Servo thing;
 	private ServoSystem()
 	{
-		Servo thing = new Servo(1);
+		thing = new Servo(1);
 	}
 	public static ServoSystem getInstance()
 	{
@@ -23,20 +23,22 @@ public class ServoSystem extends Subsystem {
 		}
 		return instance;
 	}
-	public void setSpeed()
+	public void setPosition()
 	{
-		thing.set(0.5);
+		thing.setAngle(Robot.oi.getStick().getX()+1);
 	}
-	public void angle()
+	public void angle(int angle)
 	{
-		thing.setAngle(90);
+		thing.setAngle(angle);
+		
 	}
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-       setDefaultCommand(new ServoDefault());
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
     }
 }
 
