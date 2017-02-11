@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team1160.robot.subsystems.Climber;
 import org.usfirst.frc.team1160.robot.subsystems.DriveTrain;
 
 import org.usfirst.frc.team1160.robot.commands.ExampleCommand;
@@ -29,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain dt;
 	public static ServoSystem servo;
 	public static FuelIntake intake;
+	public static Climber climber;
 
 	Command autonomousCommand;
 	SendableChooser chooser;
@@ -41,6 +43,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		intake = FuelIntake.getInstance();
 		servo = ServoSystem.getInstance();
+		climber = Climber.getInstance();
 		chooser = new SendableChooser();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		dt = DriveTrain.getInstance();

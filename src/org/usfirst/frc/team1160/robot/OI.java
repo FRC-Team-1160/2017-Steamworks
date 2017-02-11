@@ -1,13 +1,12 @@
 package org.usfirst.frc.team1160.robot;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team1160.robot.commands.ExampleCommand;
 import org.usfirst.frc.team1160.robot.commands.ServoAngle;
 import org.usfirst.frc.team1160.robot.commands.ServoDefault;
 import org.usfirst.frc.team1160.robot.commands.Intake.StartIntake;
 import org.usfirst.frc.team1160.robot.commands.Intake.StopIntake;
 import org.usfirst.frc.team1160.robot.commands.auto.DriveForward;
-import org.usfirst.frc.team1160.robot.subsystems.FuelIntake;
+import org.usfirst.frc.team1160.robot.commands.climb.Climb;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -17,7 +16,7 @@ public class OI implements RobotMap
 {
 	public static OI instance;
 	ModifiedJoystick stick;
-	JoystickButton drive,gearHold,gearAngle, startIntake, stopIntake;
+	JoystickButton climb, gearHold, gearRelease, startIntake, stopIntake;
 	
 	
 	
@@ -35,10 +34,10 @@ public class OI implements RobotMap
 	}
 	
 	public void createButtons(){
-		drive = new JoystickButton(stick,1);
+		climb = new JoystickButton(stick,1);
 		
 		gearHold = new JoystickButton(stick,2);
-		gearAngle = new JoystickButton(stick,3);
+		gearRelease = new JoystickButton(stick,3);
 		
 		startIntake = new JoystickButton(stick,4);
 		stopIntake = new JoystickButton(stick,6);
@@ -46,9 +45,9 @@ public class OI implements RobotMap
 	}
 	
 	public void assignButtons(){
-		drive.whenPressed(new DriveForward(4));
+		climb.whileHeld(new Climb());
 		gearHold.whenPressed(new ServoDefault());
-		gearAngle.whenPressed(new ServoAngle());
+		gearRelease.whenPressed(new ServoAngle());
 		
 		startIntake.whenPressed(new StartIntake());
 		stopIntake.whenPressed(new StopIntake());

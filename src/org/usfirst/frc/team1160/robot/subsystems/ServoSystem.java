@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1160.robot.subsystems;
 
 import org.usfirst.frc.team1160.robot.Robot;
+import org.usfirst.frc.team1160.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -8,12 +9,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class ServoSystem extends Subsystem {
+public class ServoSystem extends Subsystem implements RobotMap{
 	private static ServoSystem instance;
 	private Servo thing;
 	private ServoSystem()
 	{
-		thing = new Servo(1);
+		thing = new Servo(SERVO);
 	}
 	public static ServoSystem getInstance()
 	{
