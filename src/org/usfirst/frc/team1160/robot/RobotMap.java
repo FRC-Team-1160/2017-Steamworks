@@ -9,18 +9,6 @@ package org.usfirst.frc.team1160.robot;
 public interface RobotMap
 {
 
-	//drivetrain
-	/*public static final int DT_BACKRIGHT = 14;
-	public static final int DT_FRONTRIGHT = 15;
-	public static final int DT_BACKLEFT = 1;
-	public static final int DT_FRONTLEFT = 0;*/
-	
-	//everything else
-	/*public static final int turntable = 4;
-	public static final int shooter = 5;
-	public static final int climber = 6;
-	public static final int pickup = 7;
-	public static final int conveyor_belt = 8;*/
 
 	
 	/*
@@ -46,7 +34,7 @@ public interface RobotMap
 	 * Driving Constants
 	 */	
 		//Scales down DT speed
-		public static final double DT_SCALE = 1;
+		public static final double DT_SCALE = 0.6;
 		//Radius of Wheel
 		public static final double DT_WHEEL_RAD_IN = 2; 
 		public static final double DT_WHEEL_RAD_FT = DT_WHEEL_RAD_IN/12;
@@ -56,5 +44,11 @@ public interface RobotMap
 		//Circumference of Wheel
 		public static final double DT_WHEEL_CIRC_IN = DT_WHEEL_DIA_IN*Math.PI;
 		public static final double DT_WHEEL_CIRC_FT = DT_WHEEL_DIA_FT*Math.PI;
+		
+	/*
+	 * Shooter Constants
+	 */
+		//Scales down Turntable speed
+		public static final double TURNTABLE_SCALE = 0.1;
 
 }

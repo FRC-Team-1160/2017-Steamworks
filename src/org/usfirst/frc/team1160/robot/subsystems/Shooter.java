@@ -3,7 +3,6 @@
 
 package org.usfirst.frc.team1160.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.CANTalon;
 /**
@@ -11,7 +10,6 @@ import com.ctre.CANTalon;
  */
 public class Shooter extends Subsystem {
 	private static Shooter instance;
-	private Spark spark;
 	private CANTalon talon;
     
     // Put methods for controlling this subsystem
@@ -26,8 +24,7 @@ public class Shooter extends Subsystem {
 	}
 	private Shooter()
 	{
-		spark = new Spark(0);
-		talon = new CANTalon(0);
+		//talon = new CANTalon(0);
 	}
 	
 	

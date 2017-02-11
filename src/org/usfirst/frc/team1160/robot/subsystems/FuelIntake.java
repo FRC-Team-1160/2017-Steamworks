@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.usfirst.frc.team1160.robot.RobotMap;
+import org.usfirst.frc.team1160.robot.commands.Intake.StopIntake;
 
 import com.ctre.CANTalon;
 /**
@@ -35,12 +36,12 @@ public class FuelIntake extends Subsystem implements RobotMap{
 	public void pickupFuel()
 	{
 		backRoller.set(0.5);
-		frontRoller.set(0.5);
+		frontRoller.set(-0.5);
 	}
 	
 	public void fuelToShooter(){
 		backRoller.set(-0.5);
-		frontRoller.set(0.5);
+		frontRoller.set(-0.5);
 	}
 	
 	public void stop(){
@@ -50,7 +51,7 @@ public class FuelIntake extends Subsystem implements RobotMap{
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new StopIntake());
     }
 }
 

@@ -22,12 +22,6 @@ public class ManualDrive extends Command{
 		return false;
 	}
 
-	protected void end()
-	{		
-	}
-
-	protected void interrupted() {
-
-	}
+	
 
 }

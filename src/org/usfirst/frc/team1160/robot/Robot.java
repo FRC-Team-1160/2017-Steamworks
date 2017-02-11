@@ -15,6 +15,7 @@ import org.usfirst.frc.team1160.robot.commands.ExampleCommand;
 import org.usfirst.frc.team1160.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team1160.robot.subsystems.FuelIntake;
 import org.usfirst.frc.team1160.robot.subsystems.ServoSystem;
+import org.usfirst.frc.team1160.robot.subsystems.ShooterTurntable;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,6 +32,7 @@ public class Robot extends IterativeRobot {
 	public static ServoSystem servo;
 	public static FuelIntake intake;
 	public static Climber climber;
+	public static ShooterTurntable turntable;
 
 	Command autonomousCommand;
 	SendableChooser chooser;
@@ -44,6 +46,7 @@ public class Robot extends IterativeRobot {
 		intake = FuelIntake.getInstance();
 		servo = ServoSystem.getInstance();
 		climber = Climber.getInstance();
+		turntable = ShooterTurntable.getInstance();
 		chooser = new SendableChooser();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		dt = DriveTrain.getInstance();
