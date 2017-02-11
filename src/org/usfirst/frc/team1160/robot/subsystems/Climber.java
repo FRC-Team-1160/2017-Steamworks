@@ -31,7 +31,7 @@ public class Climber extends Subsystem implements RobotMap{
 	}
 	
 	public void climb(){
-		climber.set(0.5);
+		climber.set(CLIMBER_SPEED);
 	}
 	
 	public void stop(){

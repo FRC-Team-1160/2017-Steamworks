@@ -50,5 +50,18 @@ public interface RobotMap
 	 */
 		//Scales down Turntable speed
 		public static final double TURNTABLE_SCALE = 0.1;
+		
+	/*
+	 * Other Constants
+	 */
+		//Scales down Fuel Intake Speeds
+		public static final double INTAKE_SPEED = 0.5;
+		//Scales down Climber speed
+		public static final double CLIMBER_SPEED = 0.5;
+		
+		//Servo Angle Presets
+			//****PRACTICE****
+			public static final int SERVO_ANGLE_DEFAULT = 97;
+			public static final int SERVO_ANGLE_RELEASE = 108;
 
 }

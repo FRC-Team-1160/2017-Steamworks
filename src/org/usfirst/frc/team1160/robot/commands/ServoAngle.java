@@ -2,11 +2,12 @@ package org.usfirst.frc.team1160.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team1160.robot.Robot;
+import org.usfirst.frc.team1160.robot.RobotMap;
 
 /**
  *
  */
-public class ServoAngle extends Command {
+public class ServoAngle extends Command implements RobotMap{
 
     public ServoAngle() {
         // Use requires() here to declare subsystem dependencies
@@ -20,7 +21,7 @@ public class ServoAngle extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.servo.angle(108);
+    	Robot.servo.angle(SERVO_ANGLE_RELEASE);
     }
 
     // Make this return true when this Command no longer needs to run execute()
