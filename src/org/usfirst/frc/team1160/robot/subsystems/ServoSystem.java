@@ -23,10 +23,8 @@ public class ServoSystem extends Subsystem {
 		}
 		return instance;
 	}
-	public void setPosition()
-	{
-		thing.setAngle(Robot.oi.getStick().getX()+1);
-	}
+	
+	
 	public void angle(int angle)
 	{
 		thing.setAngle(angle);

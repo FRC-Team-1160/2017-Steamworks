@@ -30,6 +30,17 @@ public interface RobotMap
 		public static final int DT_FRONTRIGHT = 1;
 		public static final int DT_BACKLEFT = 2;
 		public static final int DT_BACKRIGHT = 3;
+		public static final int INTAKE_FRONT_ROLLER = 4;
+		public static final int SHOOTER_TURNTABLE = 5;
+		public static final int SHOOTER_FLYWHEEL = 6;
+		public static final int CLIMBER = 7;
+		
+	/*
+	 * PWM Values
+	 */
+		public static final int INTAKE_BACK_ROLLER = 0;
+		public static final int SERVO = 1;
+		
 	
 	/*
 	 * Driving Constants

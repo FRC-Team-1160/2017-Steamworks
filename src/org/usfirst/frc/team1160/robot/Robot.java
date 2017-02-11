@@ -12,9 +12,8 @@ import org.usfirst.frc.team1160.robot.subsystems.DriveTrain;
 
 import org.usfirst.frc.team1160.robot.commands.ExampleCommand;
 import org.usfirst.frc.team1160.robot.subsystems.ExampleSubsystem;
-import org.usfirst.frc.team1160.robot.subsystems.GearPickup;
+import org.usfirst.frc.team1160.robot.subsystems.FuelIntake;
 import org.usfirst.frc.team1160.robot.subsystems.ServoSystem;
-import org.usfirst.frc.team1160.robot.subsystems.SparkSystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,8 +28,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain dt;
 	public static ServoSystem servo;
-	public static SparkSystem spark;
-	public static GearPickup gear;
+	public static FuelIntake intake;
 
 	Command autonomousCommand;
 	SendableChooser chooser;
@@ -41,9 +39,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override //This is where Robot.java starts
 	public void robotInit() {
-		gear = GearPickup.getInstance();
+		intake = FuelIntake.getInstance();
 		servo = ServoSystem.getInstance();
-		oi = OI.getInstance();
 		chooser = new SendableChooser();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		dt = DriveTrain.getInstance();
