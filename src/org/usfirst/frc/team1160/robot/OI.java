@@ -8,6 +8,10 @@ import org.usfirst.frc.team1160.robot.commands.Intake.StartIntake;
 import org.usfirst.frc.team1160.robot.commands.Intake.StopIntake;
 import org.usfirst.frc.team1160.robot.commands.auto.DriveForward;
 import org.usfirst.frc.team1160.robot.commands.climb.Climb;
+import org.usfirst.frc.team1160.robot.commands.shoot.SetBlueSide;
+import org.usfirst.frc.team1160.robot.commands.shoot.SetRedSide;
+import org.usfirst.frc.team1160.robot.commands.shoot.ShootFromCenter;
+import org.usfirst.frc.team1160.robot.commands.shoot.ShootFromSide;
 import org.usfirst.frc.team1160.robot.commands.shoot.TurnShooterLeft;
 import org.usfirst.frc.team1160.robot.commands.shoot.TurnShooterRight;
 
@@ -22,7 +26,7 @@ public class OI implements RobotMap
 	//Buttons for main joystick
 	JoystickButton climb, gearHold, gearRelease, startIntake, stopIntake;
 	//Buttons for shooting joystick
-	JoystickButton turnShooterLeft, turnShooterRight, fuelToShooter, stopIntake2;
+	JoystickButton turnShooterLeft, turnShooterRight, fuelToShooter, shootFromSide, shootFromCenter, setBlueSide, setRedSide;
 	
 	
 	
@@ -50,10 +54,13 @@ public class OI implements RobotMap
 		stopIntake = new JoystickButton(mainStick,6);
 		
 		//Create Buttons for shooting joystick
-		stopIntake2 = new JoystickButton(shootStick,2);
+		shootFromCenter = new JoystickButton(shootStick,1);
+		fuelToShooter = new JoystickButton(shootStick,2);
+		shootFromSide = new JoystickButton(shootStick,3);
 		turnShooterLeft = new JoystickButton(shootStick,4);	
 		turnShooterRight = new JoystickButton(shootStick,5);
-		fuelToShooter = new JoystickButton(shootStick,3);
+		setBlueSide = new JoystickButton(shootStick, 8);
+		setRedSide = new JoystickButton(shootStick,9);
 
 		assignButtons();
 	}
@@ -67,10 +74,13 @@ public class OI implements RobotMap
 		stopIntake.whenPressed(new StopIntake());
 		
 		//Assign commands to shooting joystick buttons
+		shootFromCenter.whenPressed(new ShootFromCenter());
+		shootFromSide.whenPressed(new ShootFromSide());
 		turnShooterLeft.whileHeld(new TurnShooterLeft());
 		turnShooterRight.whileHeld(new TurnShooterRight());
 		fuelToShooter.whenPressed(new FuelToShooter());
-		stopIntake2.whenPressed(new StopIntake());
+		setBlueSide.whenPressed(new SetBlueSide());
+		setRedSide.whenPressed(new SetRedSide());
 	}
 	public ModifiedJoystick getStick(){
 		return mainStick;

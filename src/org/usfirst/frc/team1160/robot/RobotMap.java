@@ -50,6 +50,11 @@ public interface RobotMap
 	 */
 		//Scales down Turntable speed
 		public static final double TURNTABLE_SCALE = 0.1;
+		//Target Velocities
+		public static final double SHOOTER_SPEED_RED_CENTER = 0;
+		public static final double SHOOTER_SPEED_RED_SIDE = 0;
+		public static final double SHOOTER_SPEED_BLUE_CENTER = 0;
+		public static final double SHOOTER_SPEED_BLUE_SIDE = 0;
 		
 	/*
 	 * Other Constants
@@ -61,7 +66,16 @@ public interface RobotMap
 		
 		//Servo Angle Presets
 			//****PRACTICE****
-			public static final int SERVO_ANGLE_DEFAULT = 97;
-			public static final int SERVO_ANGLE_RELEASE = 108;
-
+			public static final int SERVO_ANGLE_DEFAULT = 93;
+			public static final int SERVO_ANGLE_RELEASE = 104;
+	
+	/*
+	 * Vision Constants
+	 */
+			
+		//Image Dimensions
+		public static final double IMG_WIDTH = 320;
+		public static final double IMG_HEIGHT = 480;
+		//Field of View
+		public static final double FOV_HORIZONTAL = 67;
 }

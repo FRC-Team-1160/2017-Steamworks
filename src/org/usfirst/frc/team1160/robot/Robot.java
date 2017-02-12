@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team1160.robot.subsystems.Climber;
 import org.usfirst.frc.team1160.robot.subsystems.DriveTrain;
 
-import org.usfirst.frc.team1160.robot.commands.ExampleCommand;
-import org.usfirst.frc.team1160.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team1160.robot.subsystems.FuelIntake;
 import org.usfirst.frc.team1160.robot.subsystems.ServoSystem;
+import org.usfirst.frc.team1160.robot.subsystems.Shooter;
 import org.usfirst.frc.team1160.robot.subsystems.ShooterTurntable;
+import org.usfirst.frc.team1160.robot.subsystems.VisionProcessing;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,13 +26,14 @@ import org.usfirst.frc.team1160.robot.subsystems.ShooterTurntable;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static DriveTrain dt;
 	public static ServoSystem servo;
 	public static FuelIntake intake;
 	public static Climber climber;
+	public static Shooter shooter;
 	public static ShooterTurntable turntable;
+	public static VisionProcessing vision;
 
 	Command autonomousCommand;
 	SendableChooser chooser;
@@ -47,8 +48,8 @@ public class Robot extends IterativeRobot {
 		servo = ServoSystem.getInstance();
 		climber = Climber.getInstance();
 		turntable = ShooterTurntable.getInstance();
-		chooser = new SendableChooser();
-		chooser.addDefault("Default Auto", new ExampleCommand());
+		shooter = Shooter.getInstance();
+		vision = VisionProcessing.getInstance();
 		dt = DriveTrain.getInstance();
 		
 		oi = OI.getInstance();
