@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team1160.robot.Robot;
 import org.usfirst.frc.team1160.robot.RobotMap;
+import org.usfirst.frc.team1160.robot.commands.shoot.JoyControl;
 
 import com.ctre.CANTalon;
 
@@ -29,6 +30,7 @@ public class Shooter extends Subsystem implements RobotMap {
 	private Shooter() {
 		shooter = new CANTalon(SHOOTER_FLYWHEEL);
 		blueSide = true;
+		shooter.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 	}
 	
 	public void joyControl(){
@@ -77,6 +79,6 @@ public class Shooter extends Subsystem implements RobotMap {
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new JoyControl());
 	}
 }

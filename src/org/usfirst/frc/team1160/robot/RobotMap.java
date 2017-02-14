@@ -34,7 +34,7 @@ public interface RobotMap
 	 * Driving Constants
 	 */	
 		//Scales down DT speed
-		public static final double DT_SCALE = 0.6;
+		public static final double DT_SCALE = 1.0;
 		//Radius of Wheel
 		public static final double DT_WHEEL_RAD_IN = 2; 
 		public static final double DT_WHEEL_RAD_FT = DT_WHEEL_RAD_IN/12;
@@ -60,13 +60,13 @@ public interface RobotMap
 	 * Other Constants
 	 */
 		//Scales down Fuel Intake Speeds
-		public static final double INTAKE_SPEED = 0.5;
+		public static final double INTAKE_SPEED = 1;
 		//Scales down Climber speed
 		public static final double CLIMBER_SPEED = 0.5;
 		
 		//Servo Angle Presets
 			//****PRACTICE****
-			public static final int SERVO_ANGLE_DEFAULT = 93;
+			public static final int SERVO_ANGLE_DEFAULT = 95;
 			public static final int SERVO_ANGLE_RELEASE = 104;
 	
 	/*

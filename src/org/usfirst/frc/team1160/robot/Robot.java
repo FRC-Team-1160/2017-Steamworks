@@ -49,13 +49,12 @@ public class Robot extends IterativeRobot {
 		climber = Climber.getInstance();
 		turntable = ShooterTurntable.getInstance();
 		shooter = Shooter.getInstance();
-		vision = VisionProcessing.getInstance();
+		//vision = VisionProcessing.getInstance();
 		dt = DriveTrain.getInstance();
 		
 		oi = OI.getInstance();
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
 	}
 
 	/**

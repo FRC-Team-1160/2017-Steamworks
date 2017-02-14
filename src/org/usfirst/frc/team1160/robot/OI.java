@@ -26,7 +26,7 @@ public class OI implements RobotMap
 	//Buttons for main joystick
 	JoystickButton climb, gearHold, gearRelease, startIntake, stopIntake;
 	//Buttons for shooting joystick
-	JoystickButton turnShooterLeft, turnShooterRight, fuelToShooter, shootFromSide, shootFromCenter, setBlueSide, setRedSide;
+	JoystickButton turnShooterLeft, turnShooterRight, fuelToShooter, stopIntake2, shootFromSide, shootFromCenter, setBlueSide, setRedSide;
 	
 	
 	
@@ -61,6 +61,7 @@ public class OI implements RobotMap
 		turnShooterRight = new JoystickButton(shootStick,5);
 		setBlueSide = new JoystickButton(shootStick, 8);
 		setRedSide = new JoystickButton(shootStick,9);
+		stopIntake2 = new JoystickButton(shootStick, 6);
 
 		assignButtons();
 	}
@@ -81,6 +82,7 @@ public class OI implements RobotMap
 		fuelToShooter.whenPressed(new FuelToShooter());
 		setBlueSide.whenPressed(new SetBlueSide());
 		setRedSide.whenPressed(new SetRedSide());
+		stopIntake2.whenPressed(new StopIntake());
 	}
 	public ModifiedJoystick getStick(){
 		return mainStick;
