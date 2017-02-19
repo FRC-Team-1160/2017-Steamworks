@@ -34,6 +34,8 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		frontRight.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		frontLeft.configEncoderCodesPerRev(256);
 		frontRight.configEncoderCodesPerRev(360);
+		
+		setManual();
 
 	}
 	
@@ -85,7 +87,7 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		frontLeft.configEncoderCodesPerRev(256);
 		frontRight.configEncoderCodesPerRev(360);
 		
-		
+		System.out.println("DT set to Manual" );
 	}
 	
 	public void setSlowPositionMode(){

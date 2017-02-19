@@ -52,7 +52,7 @@ public class Robot extends IterativeRobot {
 		turntable = ShooterTurntable.getInstance();
 		shooter = Shooter.getInstance();
 		//vision = VisionProcessing.getInstance();
-		gearCam = USBCamera.getInstance();
+		//gearCam = USBCamera.getInstance();
 		dt = DriveTrain.getInstance();
 		
 		oi = OI.getInstance();

@@ -65,7 +65,7 @@ public interface RobotMap
 	 */
 		//Scales down Fuel Intake Speeds
 		public static final double INTAKE_SPEED_FRONT = 0.75;
-		public static final double INTAKE_SPEED_BACK = 0.7;
+		public static final double INTAKE_SPEED_BACK = 0.55;
 
 		
 		
