@@ -15,6 +15,7 @@ import org.usfirst.frc.team1160.robot.subsystems.FuelIntake;
 import org.usfirst.frc.team1160.robot.subsystems.ServoSystem;
 import org.usfirst.frc.team1160.robot.subsystems.Shooter;
 import org.usfirst.frc.team1160.robot.subsystems.ShooterTurntable;
+import org.usfirst.frc.team1160.robot.subsystems.USBCamera;
 import org.usfirst.frc.team1160.robot.subsystems.VisionProcessing;
 
 /**
@@ -34,6 +35,7 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static ShooterTurntable turntable;
 	public static VisionProcessing vision;
+	public static USBCamera gearCam;
 
 	Command autonomousCommand;
 	SendableChooser chooser;
@@ -50,6 +52,7 @@ public class Robot extends IterativeRobot {
 		turntable = ShooterTurntable.getInstance();
 		shooter = Shooter.getInstance();
 		//vision = VisionProcessing.getInstance();
+		gearCam = USBCamera.getInstance();
 		dt = DriveTrain.getInstance();
 		
 		oi = OI.getInstance();

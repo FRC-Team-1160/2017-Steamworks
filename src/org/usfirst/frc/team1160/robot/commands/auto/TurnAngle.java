@@ -4,38 +4,39 @@ import org.usfirst.frc.team1160.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveForward extends Command{
+public class TurnAngle extends Command{
 
-	private double distance;
+	private double angle;
 	
-	public DriveForward(double distance){
+	public TurnAngle(double angle){
 		requires(Robot.dt);
 		
-		this.distance = distance;
+		this.angle = angle;
 	}
 	
 	protected void initialize(){
 		Robot.dt.setAuto();
-		Robot.dt.driveDistance(distance);
+		Robot.dt.turnAngle(angle);
 		Robot.dt.startTime();
 	}
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return (Robot.dt.isDone(distance) || Robot.dt.timeDone(3));
+		return Robot.dt.timeDone(1.3);
+	}
+	
+	protected void interrupted(){
+		Robot.dt.setManual();
+		Robot.dt.set(0);
+		Robot.dt.printPosition();
+		System.out.println("Tried to turn " + angle + "degrees.");
 	}
 	
 	protected void end(){
 		Robot.dt.setManual();
 		Robot.dt.set(0);
 		Robot.dt.printPosition();
-		System.out.println("Tried to drive " + distance + "units.");
-	}
-	protected void interrupted(){
-		Robot.dt.setManual();
-		Robot.dt.set(0);
-		Robot.dt.printPosition();
-		System.out.println("Tried to drive " + distance + "units.");
+		System.out.println("Tried to turn " + angle + "degrees.");
 	}
 
 }

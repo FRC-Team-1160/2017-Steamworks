@@ -44,6 +44,10 @@ public interface RobotMap
 		//Circumference of Wheel
 		public static final double DT_WHEEL_CIRC_IN = DT_WHEEL_DIA_IN*Math.PI;
 		public static final double DT_WHEEL_CIRC_FT = DT_WHEEL_DIA_FT*Math.PI;
+		//Turning Circle constants
+		public static final double DT_TURN_DIA_FT = 2;
+		public static final double DT_TURN_CIRC_FT = 2*Math.PI;
+		
 		
 	/*
 	 * Shooter Constants
@@ -60,14 +64,18 @@ public interface RobotMap
 	 * Other Constants
 	 */
 		//Scales down Fuel Intake Speeds
-		public static final double INTAKE_SPEED = 1;
+		public static final double INTAKE_SPEED_FRONT = 0.75;
+		public static final double INTAKE_SPEED_BACK = 0.7;
+
+		
+		
 		//Scales down Climber speed
 		public static final double CLIMBER_SPEED = 0.5;
 		
 		//Servo Angle Presets
 			//****PRACTICE****
 			public static final int SERVO_ANGLE_DEFAULT = 95;
-			public static final int SERVO_ANGLE_RELEASE = 104;
+			public static final int SERVO_ANGLE_RELEASE = 108;
 	
 	/*
 	 * Vision Constants

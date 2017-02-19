@@ -33,7 +33,7 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		frontLeft.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		frontRight.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		frontLeft.configEncoderCodesPerRev(256);
-		frontRight.configEncoderCodesPerRev(256);
+		frontRight.configEncoderCodesPerRev(360);
 
 	}
 	
@@ -50,15 +50,21 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		System.out.println("Talons set to autonomous mode.");
 		frontLeft.changeControlMode(CANTalon.TalonControlMode.Position);
 		frontRight.changeControlMode(CANTalon.TalonControlMode.Position);
+		frontRight.reverseSensor(true);
 		
 		
-		frontLeft.setVoltageRampRate(6);
-		frontRight.setVoltageRampRate(6);
-		frontLeft.configMaxOutputVoltage(8);
-		frontRight.configMaxOutputVoltage(8);
+		frontLeft.setVoltageRampRate(4);
+		frontRight.setVoltageRampRate(3.7);
+		frontLeft.configMaxOutputVoltage(4.5);
+		frontRight.configMaxOutputVoltage(4);
 		
 		frontLeft.configEncoderCodesPerRev(256);
-		frontRight.configEncoderCodesPerRev(256);
+		frontRight.configEncoderCodesPerRev(360);
+		
+		frontLeft.setAllowableClosedLoopErr(20);
+		frontRight.setAllowableClosedLoopErr(20);
+
+		
 		
 	}
 	
@@ -71,11 +77,33 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 		backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		frontRight.reverseSensor(false);
+		frontLeft.setVoltageRampRate(13);
+		frontRight.setVoltageRampRate(13);
+		frontLeft.configMaxOutputVoltage(13);
+		frontRight.configMaxOutputVoltage(13);
 		
 		frontLeft.configEncoderCodesPerRev(256);
-		frontRight.configEncoderCodesPerRev(256);
+		frontRight.configEncoderCodesPerRev(360);
+		
+		
 	}
 	
+	public void setSlowPositionMode(){
+		resetPos();
+
+		System.out.println("Talons set to slow position mode.");
+		frontLeft.changeControlMode(CANTalon.TalonControlMode.Position);
+		frontRight.changeControlMode(CANTalon.TalonControlMode.Position);
+		frontRight.reverseSensor(false);
+		
+		frontLeft.setVoltageRampRate(3);
+		frontRight.setVoltageRampRate(3);
+		frontLeft.configMaxOutputVoltage(4);
+		frontRight.configMaxOutputVoltage(4);
+		
+		frontLeft.configEncoderCodesPerRev(256);
+		frontRight.configEncoderCodesPerRev(360);
+	}
 	/*
 	 * Basic Autonomous Functions
 	 */
@@ -86,10 +114,32 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		frontRight.setEncPosition(0);
 	}
 	
+	public void set(double speed){
+		frontLeft.set(speed);
+		frontRight.set(speed);
+	}
+	
 	public void driveDistance(double distance){
 		// TODO After Closed Loop Control Works, tune this
 		frontLeft.set(distance);
-		frontRight.set(-distance);
+		frontRight.set(-(distance*0.97));
+	}
+	
+	public void turnAngle(double angle){
+		resetPos();
+		
+		double arcLength = (angle/360)*DT_TURN_CIRC_FT;
+		double targetPosition = arcLength/DT_WHEEL_CIRC_FT;
+		
+		frontLeft.set(-targetPosition);
+		frontRight.set(-targetPosition);
+	}
+	
+	public boolean isDone(double setPoint){
+		if(Math.abs(Math.abs(frontLeft.get())-setPoint)<(setPoint*0.1) && Math.abs(Math.abs(frontRight.get())-setPoint)<(setPoint*0.1)){
+			return true;
+		}
+		return false;
 	}
 
 	
@@ -109,9 +159,9 @@ public class DriveTrain extends Subsystem implements RobotMap{
 	 * Basic Teleop Functions
 	 */
 	public void manualDrive(){
-		frontLeft.set(DT_SCALE*(OI.getInstance().getStick().getZ() - OI.getInstance().getStick().getY()));
+		frontLeft.set(0.5*DT_SCALE*(OI.getInstance().getStick().getZ() - OI.getInstance().getStick().getY()));
 		backLeft.set(frontLeft.getDeviceID());
-		frontRight.set(DT_SCALE*(OI.getInstance().getStick().getZ() + OI.getInstance().getStick().getY()));
+		frontRight.set(0.5*DT_SCALE*(OI.getInstance().getStick().getZ() + OI.getInstance().getStick().getY()));
 		backRight.set(frontRight.getDeviceID());
 		
 		//System.out.println("Left Drive Position: " + frontLeft.getPosition()*DT_WHEEL_CIRC_FT + " feet.");

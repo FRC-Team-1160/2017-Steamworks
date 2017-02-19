@@ -11,6 +11,7 @@ public class ShootFromCenter extends Command{
 	}
 	protected void initialize(){
 		Robot.shooter.shootFromCenter();
+		Robot.vision.getAngleToTarget();
 	}
 	
 	protected void end(){

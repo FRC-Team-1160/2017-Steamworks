@@ -35,7 +35,7 @@ public class Shooter extends Subsystem implements RobotMap {
 	
 	public void joyControl(){
 		shooter.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		double speed = -2*(Robot.oi.getShootStick().getZ()+1);
+		double speed = -0.5*(Robot.oi.getShootStick().getZ()+1);
 		//System.out.println("Shooter Speed Manually set to: " + speed);
 		shooter.set(speed);
 	}

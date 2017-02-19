@@ -7,6 +7,8 @@ import org.usfirst.frc.team1160.robot.commands.Intake.FuelToShooter;
 import org.usfirst.frc.team1160.robot.commands.Intake.StartIntake;
 import org.usfirst.frc.team1160.robot.commands.Intake.StopIntake;
 import org.usfirst.frc.team1160.robot.commands.auto.DriveForward;
+import org.usfirst.frc.team1160.robot.commands.auto.StraightAuto;
+import org.usfirst.frc.team1160.robot.commands.auto.TurnAngle;
 import org.usfirst.frc.team1160.robot.commands.climb.Climb;
 import org.usfirst.frc.team1160.robot.commands.shoot.SetBlueSide;
 import org.usfirst.frc.team1160.robot.commands.shoot.SetRedSide;
@@ -24,7 +26,7 @@ public class OI implements RobotMap
 	public static OI instance;
 	ModifiedJoystick mainStick, shootStick;
 	//Buttons for main joystick
-	JoystickButton climb, gearHold, gearRelease, startIntake, stopIntake;
+	JoystickButton climb, gearHold, gearRelease, startIntake, stopIntake,turnRight,driveForward;
 	//Buttons for shooting joystick
 	JoystickButton turnShooterLeft, turnShooterRight, fuelToShooter, stopIntake2, shootFromSide, shootFromCenter, setBlueSide, setRedSide;
 	
@@ -48,10 +50,12 @@ public class OI implements RobotMap
 	public void createButtons(){
 		//Create Buttons for main joystick
 		climb = new JoystickButton(mainStick,1);
-		gearHold = new JoystickButton(mainStick,2);
-		gearRelease = new JoystickButton(mainStick,3);
+		gearHold = new JoystickButton(mainStick,5);
+		gearRelease = new JoystickButton(mainStick,7);
 		startIntake = new JoystickButton(mainStick,4);
 		stopIntake = new JoystickButton(mainStick,6);
+		turnRight = new JoystickButton(mainStick,9);
+		driveForward = new JoystickButton(mainStick,10);
 		
 		//Create Buttons for shooting joystick
 		shootFromCenter = new JoystickButton(shootStick,1);
@@ -73,6 +77,8 @@ public class OI implements RobotMap
 		gearRelease.whenPressed(new ServoAngle());
 		startIntake.whenPressed(new StartIntake());
 		stopIntake.whenPressed(new StopIntake());
+		turnRight.whenPressed(new TurnAngle(-35));
+		driveForward.whenPressed(new StraightAuto());
 		
 		//Assign commands to shooting joystick buttons
 		shootFromCenter.whenPressed(new ShootFromCenter());
