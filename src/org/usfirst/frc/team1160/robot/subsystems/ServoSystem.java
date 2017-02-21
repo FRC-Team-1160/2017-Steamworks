@@ -28,6 +28,7 @@ public class ServoSystem extends Subsystem implements RobotMap{
 	
 	public void angle(int angle)
 	{
+		
 		thing.setAngle(angle);
 		System.out.println("Servo Angle: " + thing.getAngle());
 		

@@ -54,11 +54,12 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		frontRight.changeControlMode(CANTalon.TalonControlMode.Position);
 		frontRight.reverseSensor(true);
 		
-		
+		/*
 		frontLeft.setVoltageRampRate(4);
 		frontRight.setVoltageRampRate(3.7);
 		frontLeft.configMaxOutputVoltage(4.5);
 		frontRight.configMaxOutputVoltage(4);
+		*/
 		
 		frontLeft.configEncoderCodesPerRev(256);
 		frontRight.configEncoderCodesPerRev(360);
@@ -79,11 +80,12 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 		backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		frontRight.reverseSensor(false);
+		/*
 		frontLeft.setVoltageRampRate(13);
 		frontRight.setVoltageRampRate(13);
 		frontLeft.configMaxOutputVoltage(13);
 		frontRight.configMaxOutputVoltage(13);
-		
+		*/
 		frontLeft.configEncoderCodesPerRev(256);
 		frontRight.configEncoderCodesPerRev(360);
 		
@@ -98,10 +100,12 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		frontRight.changeControlMode(CANTalon.TalonControlMode.Position);
 		frontRight.reverseSensor(false);
 		
+		/*
 		frontLeft.setVoltageRampRate(3);
 		frontRight.setVoltageRampRate(3);
 		frontLeft.configMaxOutputVoltage(4);
 		frontRight.configMaxOutputVoltage(4);
+		*/
 		
 		frontLeft.configEncoderCodesPerRev(256);
 		frontRight.configEncoderCodesPerRev(360);
@@ -161,9 +165,9 @@ public class DriveTrain extends Subsystem implements RobotMap{
 	 * Basic Teleop Functions
 	 */
 	public void manualDrive(){
-		frontLeft.set(0.5*DT_SCALE*(OI.getInstance().getStick().getZ() - OI.getInstance().getStick().getY()));
+		frontLeft.set(DT_SCALE*(OI.getInstance().getStick().getZ() - OI.getInstance().getStick().getY()));
 		backLeft.set(frontLeft.getDeviceID());
-		frontRight.set(0.5*DT_SCALE*(OI.getInstance().getStick().getZ() + OI.getInstance().getStick().getY()));
+		frontRight.set(DT_SCALE*(OI.getInstance().getStick().getZ() + OI.getInstance().getStick().getY()));
 		backRight.set(frontRight.getDeviceID());
 		
 		//System.out.println("Left Drive Position: " + frontLeft.getPosition()*DT_WHEEL_CIRC_FT + " feet.");

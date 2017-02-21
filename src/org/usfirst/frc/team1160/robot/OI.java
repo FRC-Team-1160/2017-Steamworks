@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team1160.robot.commands.ServoAngle;
 import org.usfirst.frc.team1160.robot.commands.ServoDefault;
 import org.usfirst.frc.team1160.robot.commands.Intake.FuelToShooter;
+import org.usfirst.frc.team1160.robot.commands.Intake.ReverseIntake;
 import org.usfirst.frc.team1160.robot.commands.Intake.StartIntake;
 import org.usfirst.frc.team1160.robot.commands.Intake.StopIntake;
 import org.usfirst.frc.team1160.robot.commands.auto.DriveForward;
@@ -26,7 +27,7 @@ public class OI implements RobotMap
 	public static OI instance;
 	ModifiedJoystick mainStick, shootStick;
 	//Buttons for main joystick
-	JoystickButton climb, gearHold, gearRelease, startIntake, stopIntake,turnRight,driveForward;
+	JoystickButton climb, gearHold, gearRelease, startIntake, reverseIntake, stopIntake,turnRight,driveForward;
 	//Buttons for shooting joystick
 	JoystickButton turnShooterLeft, turnShooterRight, fuelToShooter, stopIntake2, shootFromSide, shootFromCenter, setBlueSide, setRedSide;
 	
@@ -52,6 +53,7 @@ public class OI implements RobotMap
 		climb = new JoystickButton(mainStick,1);
 		gearHold = new JoystickButton(mainStick,5);
 		gearRelease = new JoystickButton(mainStick,7);
+		reverseIntake = new JoystickButton(mainStick,3);
 		startIntake = new JoystickButton(mainStick,4);
 		stopIntake = new JoystickButton(mainStick,6);
 		turnRight = new JoystickButton(mainStick,9);
@@ -75,6 +77,7 @@ public class OI implements RobotMap
 		climb.whileHeld(new Climb());
 		gearHold.whenPressed(new ServoDefault());
 		gearRelease.whenPressed(new ServoAngle());
+		reverseIntake.whenPressed(new ReverseIntake());
 		startIntake.whenPressed(new StartIntake());
 		stopIntake.whenPressed(new StopIntake());
 		turnRight.whenPressed(new TurnAngle(-35));
