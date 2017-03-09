@@ -36,13 +36,13 @@ public class FuelIntake extends Subsystem implements RobotMap{
 	public void pickupFuel()
 	{
 		backRoller.set(INTAKE_SPEED_BACK);
-		frontRoller.set(-INTAKE_SPEED_FRONT);
+		frontRoller.set(INTAKE_SPEED_FRONT);
 	}
 	
 	public void releaseFuel()
 	{
 		backRoller.set(-INTAKE_SPEED_BACK);
-		frontRoller.set(INTAKE_SPEED_FRONT);
+		frontRoller.set(-INTAKE_SPEED_FRONT);
 	}
 	
 	public void fuelToShooter(){

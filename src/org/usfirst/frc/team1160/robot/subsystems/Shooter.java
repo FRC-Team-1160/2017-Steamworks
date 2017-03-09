@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team1160.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -16,6 +17,7 @@ import com.ctre.CANTalon;
 public class Shooter extends Subsystem implements RobotMap {
 	private static Shooter instance;
 	private CANTalon shooter;
+	private Timer time;
  
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -35,6 +37,8 @@ public class Shooter extends Subsystem implements RobotMap {
 		shooter.setF(SHOOTER_KF);
 		shooter.setP(SHOOTER_KP);
 		shooter.setI(SHOOTER_KI);
+		
+		time = new Timer();
 	}
 	
 	public void joyControl(){
@@ -49,17 +53,26 @@ public class Shooter extends Subsystem implements RobotMap {
 		shooter.set(speed);
 	}
 	
+	public double getSpeed(){
+		return shooter.getSpeed();
+	}
 	public void shootFromCenter(){
-		shooter.changeControlMode(CANTalon.TalonControlMode.Speed);
 		shooter.set(SHOOTER_SPEED_CENTER);
 		}
 	
 	public void shootFromSide(){
-		shooter.changeControlMode(CANTalon.TalonControlMode.Speed);
 		shooter.set(SHOOTER_SPEED_SIDE);
 	}
 
+	public void startTime(){
+		time.reset();
+		time.start();
+	}
 	
+	
+	public double getTime(){
+		return time.get();
+	}
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		setDefaultCommand(new JoyControl());

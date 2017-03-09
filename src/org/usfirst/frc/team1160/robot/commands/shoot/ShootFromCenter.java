@@ -13,6 +13,9 @@ public class ShootFromCenter extends Command{
 		Robot.shooter.shootFromSide();
 	}
 	
+	protected void execute(){
+		Robot.shooter.shootFromCenter();
+	}
 	protected void end(){
 		Robot.shooter.setSpeed(0);
 	}

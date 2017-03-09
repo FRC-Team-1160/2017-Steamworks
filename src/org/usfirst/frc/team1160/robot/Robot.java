@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team1160.robot.motionProfiling.FollowProfile;
+import org.usfirst.frc.team1160.robot.motionProfiling.StraightGearPath;
 import org.usfirst.frc.team1160.robot.subsystems.Agitator;
 import org.usfirst.frc.team1160.robot.subsystems.Climber;
 import org.usfirst.frc.team1160.robot.subsystems.DriveTrain;
@@ -35,6 +37,8 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static ShooterTurntable turntable;
 	public static Agitator agitator;
+	
+	private StraightGearPath straightPath;
 
 	Command autonomousCommand;
 	SendableChooser chooser;
@@ -52,6 +56,8 @@ public class Robot extends IterativeRobot {
 		shooter = Shooter.getInstance();
 		agitator = Agitator.getInstance();
 		dt = DriveTrain.getInstance();
+		
+		straightPath = new StraightGearPath();
 		
 		oi = OI.getInstance();
 
@@ -86,7 +92,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		//autonomousCommand = new StraightAuto();
+		autonomousCommand = new FollowProfile(straightPath);
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",

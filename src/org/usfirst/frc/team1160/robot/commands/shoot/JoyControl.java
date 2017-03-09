@@ -12,6 +12,7 @@ public class JoyControl extends Command{
 	
 	protected void execute(){
 		Robot.shooter.joyControl();
+		System.out.println("Shooter RPM: " + Robot.shooter.getSpeed());
 	}
 	
 	protected void end(){

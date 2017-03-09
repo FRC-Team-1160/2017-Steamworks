@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1160.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Timer;
 
 import org.usfirst.frc.team1160.robot.OI;
@@ -141,6 +142,10 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		time.start();
 	}
 	
+	public double getTime(){
+		return(time.get());
+	}
+	
 	public boolean timeDone (double var){
 		return time.get() > var;
 	}
@@ -172,5 +177,38 @@ public class DriveTrain extends Subsystem implements RobotMap{
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new ManualDrive());
+	}
+
+	public void setLeft(double leftOutput) {
+		frontLeft.set(leftOutput);	
+	}
+
+	public void setRight(double rightOutput) {
+		frontRight.set(rightOutput);
+	}
+	
+	public void logData(){
+		SmartDashboard.putString("DT: ",getTime() +
+				 " " + DT_WHEEL_CIRC_FT*getLeftSpeed()/60.0 +
+				 " " + DT_WHEEL_CIRC_FT*getLeftPosition() +
+				 " " + DT_WHEEL_CIRC_FT*getRightSpeed()/60.0 +
+				 " " + DT_WHEEL_CIRC_FT*getRightPosition()
+				 );
+	}
+	
+	public double getLeftPosition(){
+		return frontLeft.getPosition();
+	}
+	
+	public double getRightPosition(){
+		return frontRight.getPosition();
+	}
+	
+	public double getLeftSpeed(){
+		return frontLeft.getSpeed();
+	}
+	
+	public double getRightSpeed(){
+		return frontRight.getSpeed();
 	}
 }
