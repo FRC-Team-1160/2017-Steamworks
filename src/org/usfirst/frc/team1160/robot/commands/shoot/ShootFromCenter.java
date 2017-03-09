@@ -10,8 +10,7 @@ public class ShootFromCenter extends Command{
 		requires(Robot.shooter);
 	}
 	protected void initialize(){
-		Robot.shooter.shootFromCenter();
-		Robot.vision.getAngleToTarget();
+		Robot.shooter.shootFromSide();
 	}
 	
 	protected void end(){

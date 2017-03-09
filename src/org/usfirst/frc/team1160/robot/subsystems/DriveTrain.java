@@ -8,6 +8,7 @@ import org.usfirst.frc.team1160.robot.RobotMap;
 import org.usfirst.frc.team1160.robot.commands.drive.ManualDrive;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 
 public class DriveTrain extends Subsystem implements RobotMap{
 
@@ -32,8 +33,8 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		
 		frontLeft.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		frontRight.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		frontLeft.configEncoderCodesPerRev(256);
-		frontRight.configEncoderCodesPerRev(360);
+		frontLeft.configEncoderCodesPerRev(DT_LEFT_ENC_COUNT_PRACTICE);
+		frontRight.configEncoderCodesPerRev(DT_RIGHT_ENC_COUNT_PRACTICE);
 		
 		setManual();
 
@@ -52,21 +53,13 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		System.out.println("Talons set to autonomous mode.");
 		frontLeft.changeControlMode(CANTalon.TalonControlMode.Position);
 		frontRight.changeControlMode(CANTalon.TalonControlMode.Position);
-		frontRight.reverseSensor(true);
+		frontRight.reverseSensor(false);
 		
-		/*
-		frontLeft.setVoltageRampRate(4);
-		frontRight.setVoltageRampRate(3.7);
-		frontLeft.configMaxOutputVoltage(4.5);
+		
+		frontLeft.setVoltageRampRate(2.85);
+		frontRight.setVoltageRampRate(3);
+		frontLeft.configMaxOutputVoltage(4);
 		frontRight.configMaxOutputVoltage(4);
-		*/
-		
-		frontLeft.configEncoderCodesPerRev(256);
-		frontRight.configEncoderCodesPerRev(360);
-		
-		frontLeft.setAllowableClosedLoopErr(20);
-		frontRight.setAllowableClosedLoopErr(20);
-
 		
 		
 	}
@@ -80,14 +73,12 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 		backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		frontRight.reverseSensor(false);
-		/*
-		frontLeft.setVoltageRampRate(13);
-		frontRight.setVoltageRampRate(13);
+	
+		frontLeft.setVoltageRampRate(100);
+		frontRight.setVoltageRampRate(100);
 		frontLeft.configMaxOutputVoltage(13);
 		frontRight.configMaxOutputVoltage(13);
-		*/
-		frontLeft.configEncoderCodesPerRev(256);
-		frontRight.configEncoderCodesPerRev(360);
+		
 		
 		System.out.println("DT set to Manual" );
 	}
@@ -95,20 +86,13 @@ public class DriveTrain extends Subsystem implements RobotMap{
 	public void setSlowPositionMode(){
 		resetPos();
 
-		System.out.println("Talons set to slow position mode.");
-		frontLeft.changeControlMode(CANTalon.TalonControlMode.Position);
-		frontRight.changeControlMode(CANTalon.TalonControlMode.Position);
-		frontRight.reverseSensor(false);
 		
-		/*
-		frontLeft.setVoltageRampRate(3);
-		frontRight.setVoltageRampRate(3);
-		frontLeft.configMaxOutputVoltage(4);
-		frontRight.configMaxOutputVoltage(4);
-		*/
+		frontLeft.setVoltageRampRate(1.5);
+		frontRight.setVoltageRampRate(1.5);
+		frontLeft.configMaxOutputVoltage(2);
+		frontRight.configMaxOutputVoltage(2);
 		
-		frontLeft.configEncoderCodesPerRev(256);
-		frontRight.configEncoderCodesPerRev(360);
+
 	}
 	/*
 	 * Basic Autonomous Functions
@@ -116,7 +100,7 @@ public class DriveTrain extends Subsystem implements RobotMap{
 	
 	public void resetPos(){
 		System.out.println("Talon positions set to 0.");
-		frontLeft.setEncPosition(0);;
+		frontLeft.setEncPosition(0);
 		frontRight.setEncPosition(0);
 	}
 	
@@ -173,8 +157,11 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		//System.out.println("Left Drive Position: " + frontLeft.getPosition()*DT_WHEEL_CIRC_FT + " feet.");
 		//System.out.println("Right Drive Position: " + frontRight.getPosition()*DT_WHEEL_CIRC_FT + " feet.");
 
-		//System.out.println("Left Drive Speed: " + frontLeft.getSpeed());
-		//System.out.println("Right Drive Speed: " + frontRight.getSpeed());
+		if(frontLeft.getSpeed() != 0)
+			//you want output that looks like: time, (left/right), fps (I think)
+			System.out.println("Left Drive Velocity in ft: " + frontLeft.getSpeed()*DT_WHEEL_CIRC_FT);
+		if(frontRight.getSpeed() != 0)
+			System.out.println("Right Drive Velocity in ft: " + frontRight.getSpeed()*DT_WHEEL_CIRC_FT);
 	}
 	
 	public void printPosition(){

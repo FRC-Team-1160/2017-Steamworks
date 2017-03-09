@@ -28,6 +28,8 @@ public interface RobotMap
 	 */
 		public static final int INTAKE_BACK_ROLLER = 0;
 		public static final int SERVO = 1;
+		public static final int AGITATOR_LEFT = 2;
+		public static final int AGITATOR_RIGHT = 3;
 		
 	
 	/*
@@ -47,25 +49,41 @@ public interface RobotMap
 		//Turning Circle constants
 		public static final double DT_TURN_DIA_FT = 2;
 		public static final double DT_TURN_CIRC_FT = 2*Math.PI;
-		
+		//Encoder Ticks Per Revolution
+			//****PRACTICE****
+			public static final int DT_LEFT_ENC_COUNT_PRACTICE = 256;
+			public static final int DT_RIGHT_ENC_COUNT_PRACTICE = 360;
+			//****COMPETITION
+			public static final int DT_LEFT_ENC_COUNT_COMP = 360;
+			public static final int DT_RIGHT_ENC_COUNT_COMP = 360;
 		
 	/*
 	 * Shooter Constants
 	 */
 		//Scales down Turntable speed
 		public static final double TURNTABLE_SCALE = 0.1;
+		//Turntalbe Constants
+		public static final double TURNTABLE_ENC_COUNTS_PER_REV = 0;
+		public static final double TURNTABLE_KP = 0;
+		public static final double TURNTABLE_KD = 0;
+		
 		//Target Velocities
-		public static final double SHOOTER_SPEED_RED_CENTER = 0;
-		public static final double SHOOTER_SPEED_RED_SIDE = 0;
-		public static final double SHOOTER_SPEED_BLUE_CENTER = 0;
-		public static final double SHOOTER_SPEED_BLUE_SIDE = 0;
+		public static final double SHOOTER_SPEED_CENTER = 0;
+		public static final double SHOOTER_SPEED_SIDE = 0;
+
+		//Closed Loop Constants
+		public static final int SHOOTER_ENC_COUNT = 0;
+		public static final double SHOOTER_KF = 0.0;
+		public static final double SHOOTER_KP = 0.0;
+		public static final double SHOOTER_KI = 0.0;
 		
 	/*
 	 * Other Constants
 	 */
 		//Scales down Fuel Intake Speeds
 		public static final double INTAKE_SPEED_FRONT = 1;
-		public static final double INTAKE_SPEED_BACK = 0.55;
+		public static final double INTAKE_SPEED_FRONT_PRACTICE = 1;
+		public static final double INTAKE_SPEED_BACK = 0.4;
 
 		
 		
@@ -78,8 +96,11 @@ public interface RobotMap
 			public static final int SERVO_ANGLE_RELEASE_PRACTICE = 108;
 			//****COMPETITION****
 			public static final int SERVO_ANGLE_DEFAULT = 30;
-			public static final int SERVO_ANGLE_RELEASE = 100
-					;
+			public static final int SERVO_ANGLE_RELEASE = 100;
+		
+		//Agitator Angle Presets
+			public static final int AGITATOR_ANGLE_DEFAULT = 0;
+			public static final int AGITATOR_ANGLE_RELEASE = 90;
 	
 	/*
 	 * Vision Constants

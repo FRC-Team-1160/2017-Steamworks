@@ -16,7 +16,6 @@ import com.ctre.CANTalon;
 public class Shooter extends Subsystem implements RobotMap {
 	private static Shooter instance;
 	private CANTalon shooter;
-	private Boolean blueSide;
  
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -29,8 +28,13 @@ public class Shooter extends Subsystem implements RobotMap {
 
 	private Shooter() {
 		shooter = new CANTalon(SHOOTER_FLYWHEEL);
-		blueSide = true;
 		shooter.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		shooter.changeControlMode(CANTalon.TalonControlMode.Speed);
+		shooter.configEncoderCodesPerRev(SHOOTER_ENC_COUNT);
+		
+		shooter.setF(SHOOTER_KF);
+		shooter.setP(SHOOTER_KP);
+		shooter.setI(SHOOTER_KI);
 	}
 	
 	public void joyControl(){
@@ -47,35 +51,14 @@ public class Shooter extends Subsystem implements RobotMap {
 	
 	public void shootFromCenter(){
 		shooter.changeControlMode(CANTalon.TalonControlMode.Speed);
-		if(blueSide){
-			shooter.set(SHOOTER_SPEED_BLUE_CENTER);
+		shooter.set(SHOOTER_SPEED_CENTER);
 		}
-		else{
-			shooter.set(SHOOTER_SPEED_RED_CENTER);
-		}
-	}
 	
 	public void shootFromSide(){
 		shooter.changeControlMode(CANTalon.TalonControlMode.Speed);
-		if(blueSide){
-			shooter.set(SHOOTER_SPEED_BLUE_SIDE);
-		}
-		else{
-			shooter.set(SHOOTER_SPEED_RED_SIDE);
-		}
+		shooter.set(SHOOTER_SPEED_SIDE);
 	}
 
-	public void setBlueSide(){
-		blueSide = true;
-		System.out.println("Shooter Speeds Calibrated for Blue Side");
-		SmartDashboard.putString("Calibrated to Side:", "Blue");
-	}
-	
-	public void setRedSide(){
-		blueSide = false;
-		System.out.println("Shooter Speeds Calibrated for Red Side");
-		SmartDashboard.putString("Calibrated to Side:", "Red");
-	}
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.

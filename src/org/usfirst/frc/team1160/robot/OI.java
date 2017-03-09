@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1160.robot;
+ package org.usfirst.frc.team1160.robot;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team1160.robot.commands.ServoAngle;
@@ -7,8 +7,8 @@ import org.usfirst.frc.team1160.robot.commands.Intake.FuelToShooter;
 import org.usfirst.frc.team1160.robot.commands.Intake.ReverseIntake;
 import org.usfirst.frc.team1160.robot.commands.Intake.StartIntake;
 import org.usfirst.frc.team1160.robot.commands.Intake.StopIntake;
-import org.usfirst.frc.team1160.robot.commands.auto.DriveForward;
-import org.usfirst.frc.team1160.robot.commands.auto.StraightAuto;
+import org.usfirst.frc.team1160.robot.commands.agitator.AgitatorDefault;
+import org.usfirst.frc.team1160.robot.commands.agitator.AgitatorRelease;
 import org.usfirst.frc.team1160.robot.commands.auto.TurnAngle;
 import org.usfirst.frc.team1160.robot.commands.climb.Climb;
 import org.usfirst.frc.team1160.robot.commands.shoot.SetBlueSide;
@@ -27,9 +27,15 @@ public class OI implements RobotMap
 	public static OI instance;
 	ModifiedJoystick mainStick, shootStick;
 	//Buttons for main joystick
-	JoystickButton climb, gearHold, gearRelease, startIntake, reverseIntake, stopIntake,turnRight,driveForward;
+	JoystickButton climb, gearHold, gearRelease, 
+				   startIntake, reverseIntake, stopIntake,
+				   turnRight,driveForward;
 	//Buttons for shooting joystick
-	JoystickButton turnShooterLeft, turnShooterRight, fuelToShooter, stopIntake2, shootFromSide, shootFromCenter, setBlueSide, setRedSide;
+	JoystickButton turnShooterLeft, turnShooterRight, 
+				   fuelToShooter, stopIntake2, 
+				   shootFromSide, shootFromCenter, 
+				   setBlueSide, setRedSide,
+				   agitatorDefault, agitatorRelease;
 	
 	
 	
@@ -68,6 +74,8 @@ public class OI implements RobotMap
 		setBlueSide = new JoystickButton(shootStick, 8);
 		setRedSide = new JoystickButton(shootStick,9);
 		stopIntake2 = new JoystickButton(shootStick, 6);
+		agitatorDefault = new JoystickButton(shootStick, 10);
+		agitatorRelease = new JoystickButton(shootStick,11);
 
 		assignButtons();
 	}
@@ -81,7 +89,6 @@ public class OI implements RobotMap
 		startIntake.whenPressed(new StartIntake());
 		stopIntake.whenPressed(new StopIntake());
 		turnRight.whenPressed(new TurnAngle(-35));
-		driveForward.whenPressed(new StraightAuto());
 		
 		//Assign commands to shooting joystick buttons
 		shootFromCenter.whenPressed(new ShootFromCenter());
@@ -92,6 +99,8 @@ public class OI implements RobotMap
 		setBlueSide.whenPressed(new SetBlueSide());
 		setRedSide.whenPressed(new SetRedSide());
 		stopIntake2.whenPressed(new StopIntake());
+		agitatorDefault.whenPressed(new AgitatorDefault());
+		agitatorRelease.whenPressed(new AgitatorRelease());
 	}
 	public ModifiedJoystick getStick(){
 		return mainStick;

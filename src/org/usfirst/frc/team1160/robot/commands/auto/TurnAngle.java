@@ -22,7 +22,7 @@ public class TurnAngle extends Command{
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return Robot.dt.timeDone(1.3);
+		return Robot.dt.timeDone(1.5);
 	}
 	
 	protected void interrupted(){

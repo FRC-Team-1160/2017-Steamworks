@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team1160.robot.subsystems.Agitator;
 import org.usfirst.frc.team1160.robot.subsystems.Climber;
 import org.usfirst.frc.team1160.robot.subsystems.DriveTrain;
 
@@ -15,8 +16,7 @@ import org.usfirst.frc.team1160.robot.subsystems.FuelIntake;
 import org.usfirst.frc.team1160.robot.subsystems.ServoSystem;
 import org.usfirst.frc.team1160.robot.subsystems.Shooter;
 import org.usfirst.frc.team1160.robot.subsystems.ShooterTurntable;
-import org.usfirst.frc.team1160.robot.subsystems.USBCamera;
-import org.usfirst.frc.team1160.robot.subsystems.VisionProcessing;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,8 +34,7 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static Shooter shooter;
 	public static ShooterTurntable turntable;
-	public static VisionProcessing vision;
-	public static USBCamera gearCam;
+	public static Agitator agitator;
 
 	Command autonomousCommand;
 	SendableChooser chooser;
@@ -51,8 +50,7 @@ public class Robot extends IterativeRobot {
 		climber = Climber.getInstance();
 		turntable = ShooterTurntable.getInstance();
 		shooter = Shooter.getInstance();
-		//vision = VisionProcessing.getInstance();
-		//gearCam = USBCamera.getInstance();
+		agitator = Agitator.getInstance();
 		dt = DriveTrain.getInstance();
 		
 		oi = OI.getInstance();
@@ -88,7 +86,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = (Command) chooser.getSelected();
+		//autonomousCommand = new StraightAuto();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",

@@ -11,7 +11,7 @@ public class SetBlueSide extends Command{
 	}
 	
 	protected void initialize(){
-		Robot.shooter.setBlueSide();
+		Robot.turntable.setBlueSide();
 	}
 	
 	@Override
