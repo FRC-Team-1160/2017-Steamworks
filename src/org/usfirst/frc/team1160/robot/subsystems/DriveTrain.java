@@ -16,6 +16,7 @@ public class DriveTrain extends Subsystem implements RobotMap{
 	public static DriveTrain instance;
 	private CANTalon frontLeft, frontRight, backLeft, backRight;
 	private Timer time;
+	private double maxRightVelocity, maxLeftVelocity;
 
 	
 	public static DriveTrain getInstance(){
@@ -34,9 +35,11 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		
 		frontLeft.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		frontRight.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		frontLeft.configEncoderCodesPerRev(DT_LEFT_ENC_COUNT_PRACTICE);
-		frontRight.configEncoderCodesPerRev(DT_RIGHT_ENC_COUNT_PRACTICE);
+		frontLeft.configEncoderCodesPerRev(DT_LEFT_ENC_COUNT_COMP);
+		frontRight.configEncoderCodesPerRev(DT_RIGHT_ENC_COUNT_COMP);
 		
+		maxRightVelocity = 0;
+		maxLeftVelocity = 0;
 		setManual();
 
 	}
@@ -79,6 +82,25 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		frontRight.setVoltageRampRate(100);
 		frontLeft.configMaxOutputVoltage(13);
 		frontRight.configMaxOutputVoltage(13);
+		
+		
+		System.out.println("DT set to Manual" );
+	}
+	
+	public void setSlowManual(){
+		frontLeft.setProfile(0);
+		frontRight.setProfile(0);
+		
+		frontLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		frontRight.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
+		backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
+		frontRight.reverseSensor(false);
+	
+		frontLeft.setVoltageRampRate(100);
+		frontRight.setVoltageRampRate(100);
+		frontLeft.configMaxOutputVoltage(6);
+		frontRight.configMaxOutputVoltage(6);
 		
 		
 		System.out.println("DT set to Manual" );
@@ -154,19 +176,43 @@ public class DriveTrain extends Subsystem implements RobotMap{
 	 * Basic Teleop Functions
 	 */
 	public void manualDrive(){
-		frontLeft.set(DT_SCALE*(OI.getInstance().getStick().getZ() - OI.getInstance().getStick().getY()));
+		frontLeft.set((OI.getInstance().getStick().getZ() - OI.getInstance().getStick().getY()));
 		backLeft.set(frontLeft.getDeviceID());
-		frontRight.set(DT_SCALE*(OI.getInstance().getStick().getZ() + OI.getInstance().getStick().getY()));
+		frontRight.set((505.0/535.0)*(OI.getInstance().getStick().getZ() + OI.getInstance().getStick().getY()));
+		//frontRight.set((OI.getInstance().getStick().getZ() + OI.getInstance().getStick().getY()));
 		backRight.set(frontRight.getDeviceID());
 		
 		//System.out.println("Left Drive Position: " + frontLeft.getPosition()*DT_WHEEL_CIRC_FT + " feet.");
 		//System.out.println("Right Drive Position: " + frontRight.getPosition()*DT_WHEEL_CIRC_FT + " feet.");
 
-		if(frontLeft.getSpeed() != 0)
+		//if(frontLeft.getSpeed() != 0)
 			//you want output that looks like: time, (left/right), fps (I think)
-			System.out.println("Left Drive Velocity in ft: " + frontLeft.getSpeed()*DT_WHEEL_CIRC_FT);
-		if(frontRight.getSpeed() != 0)
-			System.out.println("Right Drive Velocity in ft: " + frontRight.getSpeed()*DT_WHEEL_CIRC_FT);
+			//System.out.println("Left Drive Velocity in ft: " + frontLeft.getSpeed()*DT_WHEEL_CIRC_FT);
+		//if(frontRight.getSpeed() != 0)
+			//System.out.println("Right Drive Velocity in ft: " + frontRight.getSpeed()*DT_WHEEL_CIRC_FT);
+		if(frontRight.getSpeed()*DT_WHEEL_CIRC_FT>maxRightVelocity)
+			maxRightVelocity = frontRight.getSpeed()*DT_WHEEL_CIRC_FT;
+		
+		if(frontLeft.getSpeed()*DT_WHEEL_CIRC_FT<maxLeftVelocity)
+			maxLeftVelocity = frontLeft.getSpeed()*DT_WHEEL_CIRC_FT;
+		System.out.println("Max Left Drive Velocity in ft: " + maxLeftVelocity);
+		System.out.println("Max Right Drive Velocity in ft: " + maxRightVelocity);
+	}
+	public void slowManualDrive(){
+		frontLeft.set(0.35*(OI.getInstance().getStick().getZ() - OI.getInstance().getStick().getY()));
+		backLeft.set(frontLeft.getDeviceID());
+		frontRight.set(0.35*(505.0/535.0)*(OI.getInstance().getStick().getZ() + OI.getInstance().getStick().getY()));
+		backRight.set(frontRight.getDeviceID());
+		
+		//System.out.println("Left Drive Position: " + frontLeft.getPosition()*DT_WHEEL_CIRC_FT + " feet.");
+		//System.out.println("Right Drive Position: " + frontRight.getPosition()*DT_WHEEL_CIRC_FT + " feet.");
+
+		//if(frontLeft.getSpeed() != 0)
+			//you want output that looks like: time, (left/right), fps (I think)
+			//System.out.println("Left Drive Velocity in ft: " + frontLeft.getSpeed()*DT_WHEEL_CIRC_FT);
+		//if(frontRight.getSpeed() != 0)
+			//System.out.println("Right Drive Velocity in ft: " + frontRight.getSpeed()*DT_WHEEL_CIRC_FT);
+		
 	}
 	
 	public void printPosition(){
@@ -174,11 +220,7 @@ public class DriveTrain extends Subsystem implements RobotMap{
 		System.out.println("Right Position: " + frontRight.getPosition());
 
 	}
-	@Override
-	protected void initDefaultCommand() {
-		setDefaultCommand(new ManualDrive());
-	}
-
+	
 	public void setLeft(double leftOutput) {
 		frontLeft.set(leftOutput);	
 	}
@@ -211,4 +253,11 @@ public class DriveTrain extends Subsystem implements RobotMap{
 	public double getRightSpeed(){
 		return frontRight.getSpeed();
 	}
+
+	@Override
+	protected void initDefaultCommand() {
+		setDefaultCommand(new ManualDrive());
+	}
+
+	
 }

@@ -36,7 +36,7 @@ public interface RobotMap
 	 * Driving Constants
 	 */	
 	//Scales down DT speed
-	public static final double DT_SCALE = 2;
+	public static final double DT_SCALE = 2.0;
 	//Radius of Wheel
 	public static final double DT_WHEEL_RAD_IN = 2; 
 	public static final double DT_WHEEL_RAD_FT = DT_WHEEL_RAD_IN/12;
@@ -64,14 +64,16 @@ public interface RobotMap
 
 	public static final double MOTIONPROFILE_KA_LEFT = 0;
 
-	public static final double MOTIONPROFILE_KV_LEFT = .8*60.0*(1.0/345.0)/DT_WHEEL_CIRC_FT;
+	public static final double MOTIONPROFILE_KV_LEFT = 1.2*(60.0/510.0);
+			//.92*60.0*(1.0/345.0)/DT_WHEEL_CIRC_FT;
 	public static final double MOTIONPROFILE_KP_LEFT = 0.00000;
 
 
 
 	public static final double MOTIONPROFILE_KA_RIGHT = 0;
 
-	public static final double MOTIONPROFILE_KV_RIGHT = .8*60.0*(1.0/357.0)/DT_WHEEL_CIRC_FT;
+	public static final double MOTIONPROFILE_KV_RIGHT = 1.2*(60.0/520.0);
+			//.92*60.0*(1.0/357.0)/DT_WHEEL_CIRC_FT;
 
 	public static final double MOTIONPROFILE_KP_RIGHT = 0.00000;
 	/*
@@ -85,14 +87,14 @@ public interface RobotMap
 	public static final double TURNTABLE_KD = 0;
 
 	//Target Velocities
-	public static final double SHOOTER_SPEED_CENTER = -1000;
-	public static final double SHOOTER_SPEED_SIDE = 0;
+	public static final double SHOOTER_SPEED_CENTER = -2000;
+	public static final double SHOOTER_SPEED_SIDE = -1000;
 
 	//Closed Loop Constants
 	public static final int SHOOTER_ENC_COUNT = 4096;
 	public static final double SHOOTER_KF = 0.0;
-	public static final double SHOOTER_KP = 0.001;
-	public static final double SHOOTER_KI = 1.0*Math.pow(10, -7);
+	public static final double SHOOTER_KP = 0.04;
+	public static final double SHOOTER_KI = 1.5*Math.pow(10, -4);
 
 	/*
 	 * Other Constants
@@ -105,15 +107,15 @@ public interface RobotMap
 
 
 	//Scales down Climber speed
-	public static final double CLIMBER_SPEED = 0.5;
+	public static final double CLIMBER_SPEED = 1.0;
 
 	//Servo Angle Presets
 	//****PRACTICE****
 	public static final int SERVO_ANGLE_DEFAULT_PRACTICE = 95;
 	public static final int SERVO_ANGLE_RELEASE_PRACTICE = 108;
 	//****COMPETITION****
-	public static final int SERVO_ANGLE_DEFAULT = 97;
-	public static final int SERVO_ANGLE_RELEASE = 110;
+	public static final int SERVO_ANGLE_DEFAULT = 45;
+	public static final int SERVO_ANGLE_RELEASE = 105;
 
 	//Agitator Angle Presets
 	public static final int AGITATOR_ANGLE_DEFAULT = 0;

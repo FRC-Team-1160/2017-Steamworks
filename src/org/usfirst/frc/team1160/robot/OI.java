@@ -11,6 +11,7 @@ import org.usfirst.frc.team1160.robot.commands.agitator.AgitatorDefault;
 import org.usfirst.frc.team1160.robot.commands.agitator.AgitatorRelease;
 import org.usfirst.frc.team1160.robot.commands.auto.TurnAngle;
 import org.usfirst.frc.team1160.robot.commands.climb.Climb;
+import org.usfirst.frc.team1160.robot.commands.drive.SlowManualDrive;
 import org.usfirst.frc.team1160.robot.commands.shoot.SetBlueSide;
 import org.usfirst.frc.team1160.robot.commands.shoot.SetRedSide;
 import org.usfirst.frc.team1160.robot.commands.shoot.ShootFromCenter;
@@ -29,7 +30,7 @@ public class OI implements RobotMap
 	//Buttons for main joystick
 	JoystickButton climb, gearHold, gearRelease, 
 				   startIntake, reverseIntake, stopIntake,
-				   turnRight,driveForward;
+				   turnRight,driveForward, slowDrive;
 	//Buttons for shooting joystick
 	JoystickButton turnShooterLeft, turnShooterRight, 
 				   fuelToShooter, stopIntake2, 
@@ -57,6 +58,7 @@ public class OI implements RobotMap
 	public void createButtons(){
 		//Create Buttons for main joystick
 		climb = new JoystickButton(mainStick,1);
+		slowDrive = new JoystickButton(mainStick,2);
 		gearHold = new JoystickButton(mainStick,5);
 		gearRelease = new JoystickButton(mainStick,7);
 		reverseIntake = new JoystickButton(mainStick,3);
@@ -83,6 +85,7 @@ public class OI implements RobotMap
 	public void assignButtons(){
 		//Assign commands to main joystick buttons
 		climb.whileHeld(new Climb());
+		slowDrive.toggleWhenPressed(new SlowManualDrive());
 		gearHold.whenPressed(new ServoDefault());
 		gearRelease.whenPressed(new ServoAngle());
 		reverseIntake.whenPressed(new ReverseIntake());
@@ -91,8 +94,8 @@ public class OI implements RobotMap
 		turnRight.whenPressed(new TurnAngle(-35));
 		
 		//Assign commands to shooting joystick buttons
-		shootFromCenter.whenPressed(new ShootFromCenter());
-		shootFromSide.whenPressed(new ShootFromSide());
+		shootFromCenter.toggleWhenPressed(new ShootFromCenter());
+		shootFromSide.toggleWhenPressed(new ShootFromSide());
 		turnShooterLeft.whileHeld(new TurnShooterLeft());
 		turnShooterRight.whileHeld(new TurnShooterRight());
 		fuelToShooter.whenPressed(new FuelToShooter());

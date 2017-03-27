@@ -7,13 +7,13 @@ import org.usfirst.frc.team1160.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class FollowProfile extends Command implements RobotMap {
+public class FollowInvertedProfile extends Command implements RobotMap {
 
 	private MotionProfile profile;
 	private int currentPoint;
 	private double timeout;
 
-	public FollowProfile(MotionProfile profile, double timeout) {
+	public FollowInvertedProfile(MotionProfile profile, double timeout) {
 
 		requires(Robot.dt);
 		this.profile = profile;
@@ -35,11 +35,10 @@ public class FollowProfile extends Command implements RobotMap {
 		double leftOutput = calculateLeftOutput(profile, currentPoint);
 		double rightOutput = calculateRightOutput(profile, currentPoint);
 		
-		Robot.dt.setLeft(leftOutput);
-		Robot.dt.setRight(-rightOutput);
+		Robot.dt.setLeft(-leftOutput);
+		Robot.dt.setRight(rightOutput);
 		System.out.println(Robot.dt.getTime());
 		
-		System.out.println("Time: " + Robot.dt.getTime() + " Left Pos: " + Robot.dt.getLeftPosition() + " Right Pos: " + Robot.dt.getRightPosition()); 
 		Robot.dt.logData();
 	}
 	
@@ -76,7 +75,7 @@ public class FollowProfile extends Command implements RobotMap {
 			return (0);
 
 	}
-
+	
 	protected void interrupted(){
 		Robot.dt.resetPos();
 		Robot.dt.set(0);
@@ -86,7 +85,6 @@ public class FollowProfile extends Command implements RobotMap {
 		Robot.dt.resetPos();
 		Robot.dt.set(0);
 	}
-	
 	@Override
 	protected boolean isFinished() {
 		return(Robot.dt.getTime()>timeout);

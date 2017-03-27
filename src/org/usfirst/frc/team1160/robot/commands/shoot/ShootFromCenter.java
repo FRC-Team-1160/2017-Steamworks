@@ -10,7 +10,8 @@ public class ShootFromCenter extends Command{
 		requires(Robot.shooter);
 	}
 	protected void initialize(){
-		Robot.shooter.shootFromSide();
+		Robot.shooter.startTime();
+		Robot.shooter.setSpeedMode();
 	}
 	
 	protected void execute(){
@@ -26,7 +27,7 @@ public class ShootFromCenter extends Command{
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 }

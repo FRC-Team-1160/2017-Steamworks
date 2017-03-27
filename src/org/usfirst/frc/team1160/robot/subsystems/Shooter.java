@@ -58,10 +58,15 @@ public class Shooter extends Subsystem implements RobotMap {
 	}
 	public void shootFromCenter(){
 		shooter.set(SHOOTER_SPEED_CENTER);
+		System.out.println("Shooter RPM: " + getSpeed());
 		}
 	
 	public void shootFromSide(){
 		shooter.set(SHOOTER_SPEED_SIDE);
+	}
+	
+	public void setSpeedMode(){
+		shooter.changeControlMode(CANTalon.TalonControlMode.Speed);
 	}
 
 	public void startTime(){
@@ -75,6 +80,6 @@ public class Shooter extends Subsystem implements RobotMap {
 	}
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new JoyControl());
+		//setDefaultCommand(new JoyControl());
 	}
 }
