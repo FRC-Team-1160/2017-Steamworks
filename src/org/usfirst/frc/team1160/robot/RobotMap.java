@@ -104,6 +104,13 @@ public interface RobotMap
 	public static final double INTAKE_SPEED_FRONT_PRACTICE = 1;
 	public static final double INTAKE_SPEED_BACK = 0.4;
 
+	//Gear Pickup Speeds
+	public static final double GEAR_PICKUP_INTAKE = -0.4;
+	public static final double GEAR_PICKUP_REVERSE = 0.4;
+	public static final double GEAR_ARM_SCALE = 0.4;
+
+	
+	
 
 
 	//Scales down Climber speed

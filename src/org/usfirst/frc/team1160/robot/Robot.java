@@ -16,6 +16,8 @@ import org.usfirst.frc.team1160.robot.subsystems.Climber;
 import org.usfirst.frc.team1160.robot.subsystems.DriveTrain;
 
 import org.usfirst.frc.team1160.robot.subsystems.FuelIntake;
+import org.usfirst.frc.team1160.robot.subsystems.GearArm;
+import org.usfirst.frc.team1160.robot.subsystems.GearPickup;
 import org.usfirst.frc.team1160.robot.subsystems.ServoSystem;
 import org.usfirst.frc.team1160.robot.subsystems.Shooter;
 import org.usfirst.frc.team1160.robot.subsystems.ShooterTurntable;
@@ -38,6 +40,8 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static ShooterTurntable turntable;
 	public static Agitator agitator;
+	public static GearPickup gearPickup;
+	public static GearArm gearArm;
 	
 	private StraightGearPath straightPath;
 
@@ -56,6 +60,8 @@ public class Robot extends IterativeRobot {
 		turntable = ShooterTurntable.getInstance();
 		shooter = Shooter.getInstance();
 		agitator = Agitator.getInstance();
+		gearPickup = GearPickup.getInstance();
+		gearArm =  GearArm.getInstance();
 		dt = DriveTrain.getInstance();
 		
 		straightPath = new StraightGearPath();

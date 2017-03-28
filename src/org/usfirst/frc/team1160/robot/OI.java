@@ -12,6 +12,10 @@ import org.usfirst.frc.team1160.robot.commands.agitator.AgitatorRelease;
 import org.usfirst.frc.team1160.robot.commands.auto.TurnAngle;
 import org.usfirst.frc.team1160.robot.commands.climb.Climb;
 import org.usfirst.frc.team1160.robot.commands.drive.SlowManualDrive;
+import org.usfirst.frc.team1160.robot.commands.gearPickup.GearPickupOn;
+import org.usfirst.frc.team1160.robot.commands.gearPickup.GearPickupReverse;
+import org.usfirst.frc.team1160.robot.commands.gearPickup.GearPickupStop;
+import org.usfirst.frc.team1160.robot.commands.gearPickup.SetArmPosition;
 import org.usfirst.frc.team1160.robot.commands.shoot.SetBlueSide;
 import org.usfirst.frc.team1160.robot.commands.shoot.SetRedSide;
 import org.usfirst.frc.team1160.robot.commands.shoot.ShootFromCenter;
@@ -28,15 +32,11 @@ public class OI implements RobotMap
 	public static OI instance;
 	ModifiedJoystick mainStick, shootStick;
 	//Buttons for main joystick
-	JoystickButton climb, gearHold, gearRelease, 
+	JoystickButton climb, gearHold, gearRelease, gearIntakeStop,
 				   startIntake, reverseIntake, stopIntake,
 				   turnRight,driveForward, slowDrive;
 	//Buttons for shooting joystick
-	JoystickButton turnShooterLeft, turnShooterRight, 
-				   fuelToShooter, stopIntake2, 
-				   shootFromSide, shootFromCenter, 
-				   setBlueSide, setRedSide,
-				   agitatorDefault, agitatorRelease;
+	JoystickButton gearFullUp, gearIntakePosition, gearPlacePosition;
 	
 	
 	
@@ -61,6 +61,7 @@ public class OI implements RobotMap
 		slowDrive = new JoystickButton(mainStick,2);
 		gearHold = new JoystickButton(mainStick,5);
 		gearRelease = new JoystickButton(mainStick,7);
+		gearIntakeStop = new JoystickButton(mainStick,8);
 		reverseIntake = new JoystickButton(mainStick,3);
 		startIntake = new JoystickButton(mainStick,4);
 		stopIntake = new JoystickButton(mainStick,6);
@@ -68,16 +69,10 @@ public class OI implements RobotMap
 		driveForward = new JoystickButton(mainStick,10);
 		
 		//Create Buttons for shooting joystick
-		shootFromCenter = new JoystickButton(shootStick,1);
-		fuelToShooter = new JoystickButton(shootStick,2);
-		shootFromSide = new JoystickButton(shootStick,3);
-		turnShooterLeft = new JoystickButton(shootStick,4);	
-		turnShooterRight = new JoystickButton(shootStick,5);
-		setBlueSide = new JoystickButton(shootStick, 8);
-		setRedSide = new JoystickButton(shootStick,9);
-		stopIntake2 = new JoystickButton(shootStick, 6);
-		agitatorDefault = new JoystickButton(shootStick, 10);
-		agitatorRelease = new JoystickButton(shootStick,11);
+		gearFullUp = new JoystickButton(shootStick,3);
+		gearIntakePosition = new JoystickButton(shootStick, 2);
+		gearPlacePosition = new JoystickButton(shootStick, 1);
+
 
 		assignButtons();
 	}
@@ -86,24 +81,19 @@ public class OI implements RobotMap
 		//Assign commands to main joystick buttons
 		climb.whileHeld(new Climb());
 		slowDrive.toggleWhenPressed(new SlowManualDrive());
-		gearHold.whenPressed(new ServoDefault());
-		gearRelease.whenPressed(new ServoAngle());
+		gearHold.whenPressed(new GearPickupOn());
+		gearRelease.whenPressed(new GearPickupReverse());
+		gearIntakeStop.whenPressed(new GearPickupStop());
 		reverseIntake.whenPressed(new ReverseIntake());
 		startIntake.whenPressed(new StartIntake());
 		stopIntake.whenPressed(new StopIntake());
 		turnRight.whenPressed(new TurnAngle(-35));
 		
 		//Assign commands to shooting joystick buttons
-		shootFromCenter.toggleWhenPressed(new ShootFromCenter());
-		shootFromSide.toggleWhenPressed(new ShootFromSide());
-		turnShooterLeft.whileHeld(new TurnShooterLeft());
-		turnShooterRight.whileHeld(new TurnShooterRight());
-		fuelToShooter.whenPressed(new FuelToShooter());
-		setBlueSide.whenPressed(new SetBlueSide());
-		setRedSide.whenPressed(new SetRedSide());
-		stopIntake2.whenPressed(new StopIntake());
-		agitatorDefault.whenPressed(new AgitatorDefault());
-		agitatorRelease.whenPressed(new AgitatorRelease());
+		gearFullUp.whenPressed(new SetArmPosition(0));
+		gearIntakePosition.whenPressed(new SetArmPosition(-1.1));
+		gearPlacePosition.whenPressed(new SetArmPosition(-0.5));
+
 	}
 	public ModifiedJoystick getStick(){
 		return mainStick;

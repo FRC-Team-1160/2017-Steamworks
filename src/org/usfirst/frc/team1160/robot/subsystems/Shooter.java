@@ -29,7 +29,7 @@ public class Shooter extends Subsystem implements RobotMap {
 	}
 
 	private Shooter() {
-		shooter = new CANTalon(SHOOTER_FLYWHEEL);
+		shooter = new CANTalon(10);
 		shooter.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		shooter.changeControlMode(CANTalon.TalonControlMode.Speed);
 		shooter.configEncoderCodesPerRev(SHOOTER_ENC_COUNT);
