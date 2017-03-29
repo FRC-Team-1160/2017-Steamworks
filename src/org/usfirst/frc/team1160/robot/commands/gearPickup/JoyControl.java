@@ -20,11 +20,11 @@ public class JoyControl extends Command{
 	}
 	
 	protected void end(){
-		Robot.shooter.setSpeed(0);
+		//Robot.gearArm.stop();
 	}
 	
 	protected void interrupted(){
-		Robot.shooter.setSpeed(0);
+		//Robot.gearArm.stop();
 	}
 	
 	@Override

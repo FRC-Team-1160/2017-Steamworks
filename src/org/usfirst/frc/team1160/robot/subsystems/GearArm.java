@@ -3,6 +3,7 @@ package org.usfirst.frc.team1160.robot.subsystems;
 
 import org.usfirst.frc.team1160.robot.Robot;
 import org.usfirst.frc.team1160.robot.RobotMap;
+import org.usfirst.frc.team1160.robot.commands.gearPickup.JoyControl;
 
 import com.ctre.CANTalon;
 
@@ -30,6 +31,7 @@ public class GearArm extends Subsystem implements RobotMap{
 		//rightServo = new Servo(3);
 		//System.out.println(servo.get()); 
 		talon.setPosition(0);
+		talon.enableBrakeMode(true);
 		
 	}
 
@@ -38,7 +40,7 @@ public class GearArm extends Subsystem implements RobotMap{
 	}
 	
 	public void setVoltageMode(){
-		talon.changeControlMode(CANTalon.TalonControlMode.Voltage);
+		talon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 	}
 	public void setTalon(double position){
 		talon.changeControlMode(CANTalon.TalonControlMode.Position);
@@ -46,13 +48,28 @@ public class GearArm extends Subsystem implements RobotMap{
 		talon.set(position);
 	}
 	
+	public void turnLeft(){
+		talon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		talon.set(TURNTABLE_SCALE/2);
+	}
+	
+	public void turnRight(){
+		talon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		talon.set(-TURNTABLE_SCALE/2);	
+	}
+	
+	public void stop(){
+		talon.set(0);
+	}
+	
 	public void joyControl(){
-		talon.set(-Robot.oi.getShootStick().getZ()*GEAR_ARM_SCALE);
+		System.out.println(-Robot.oi.getShootStick().getZ()*GEAR_ARM_SCALE);
+		talon.set(-0.15 - Robot.oi.getShootStick().getY()*GEAR_ARM_SCALE);
 	}
 
 	@Override
 	protected void initDefaultCommand() {
-
+		setDefaultCommand(new JoyControl());
 	}
 
 }

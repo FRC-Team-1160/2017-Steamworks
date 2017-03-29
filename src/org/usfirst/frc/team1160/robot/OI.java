@@ -59,9 +59,9 @@ public class OI implements RobotMap
 		//Create Buttons for main joystick
 		climb = new JoystickButton(mainStick,1);
 		slowDrive = new JoystickButton(mainStick,2);
-		gearHold = new JoystickButton(mainStick,5);
-		gearRelease = new JoystickButton(mainStick,7);
-		gearIntakeStop = new JoystickButton(mainStick,8);
+		gearHold = new JoystickButton(shootStick,1);
+		gearRelease = new JoystickButton(shootStick,3);
+		gearIntakeStop = new JoystickButton(shootStick,2);
 		reverseIntake = new JoystickButton(mainStick,3);
 		startIntake = new JoystickButton(mainStick,4);
 		stopIntake = new JoystickButton(mainStick,6);
@@ -90,9 +90,7 @@ public class OI implements RobotMap
 		turnRight.whenPressed(new TurnAngle(-35));
 		
 		//Assign commands to shooting joystick buttons
-		gearFullUp.whenPressed(new SetArmPosition(0));
-		gearIntakePosition.whenPressed(new SetArmPosition(-1.1));
-		gearPlacePosition.whenPressed(new SetArmPosition(-0.5));
+		
 
 	}
 	public ModifiedJoystick getStick(){
