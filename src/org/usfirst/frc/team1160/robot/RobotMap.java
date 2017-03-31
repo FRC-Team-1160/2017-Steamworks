@@ -64,7 +64,7 @@ public interface RobotMap
 
 	public static final double MOTIONPROFILE_KA_LEFT = 0;
 
-	public static final double MOTIONPROFILE_KV_LEFT = 1.2*(60.0/510.0);
+	public static final double MOTIONPROFILE_KV_LEFT = 1.375*(60.0/510.0);
 			//.92*60.0*(1.0/345.0)/DT_WHEEL_CIRC_FT;
 	public static final double MOTIONPROFILE_KP_LEFT = 0.00000;
 
@@ -72,7 +72,7 @@ public interface RobotMap
 
 	public static final double MOTIONPROFILE_KA_RIGHT = 0;
 
-	public static final double MOTIONPROFILE_KV_RIGHT = 1.2*(60.0/520.0);
+	public static final double MOTIONPROFILE_KV_RIGHT = 1.375*(60.0/520.0);
 			//.92*60.0*(1.0/357.0)/DT_WHEEL_CIRC_FT;
 
 	public static final double MOTIONPROFILE_KP_RIGHT = 0.00000;

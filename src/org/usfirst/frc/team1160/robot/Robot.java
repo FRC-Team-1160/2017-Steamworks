@@ -1,12 +1,15 @@
 
 package org.usfirst.frc.team1160.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.vision.USBCamera;
 
 import org.usfirst.frc.team1160.robot.commands.auto.StraightAuto;
 import org.usfirst.frc.team1160.robot.motionProfiling.FollowProfile;
@@ -63,6 +66,10 @@ public class Robot extends IterativeRobot {
 		gearPickup = GearPickup.getInstance();
 		gearArm =  GearArm.getInstance();
 		dt = DriveTrain.getInstance();
+		
+		
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		
 		
 		straightPath = new StraightGearPath();
 		

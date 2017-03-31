@@ -8,12 +8,14 @@ import org.usfirst.frc.team1160.robot.commands.gearPickup.JoyControl;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class GearArm extends Subsystem implements RobotMap{
 
 	public static GearArm instance;
 	private CANTalon talon;
+	private Timer timer;
 	
 	public static GearArm getInstance(){
 		if(instance==null){
@@ -24,7 +26,7 @@ public class GearArm extends Subsystem implements RobotMap{
 	
 	private GearArm(){
 		
-		talon = new CANTalon(6);
+		talon = new CANTalon(SHOOTER_FLYWHEEL);
 		talon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		talon.configEncoderCodesPerRev(400);
 		talon.reverseOutput(true);
@@ -32,6 +34,8 @@ public class GearArm extends Subsystem implements RobotMap{
 		//System.out.println(servo.get()); 
 		talon.setPosition(0);
 		talon.enableBrakeMode(true);
+		
+		timer = new Timer();
 		
 	}
 
@@ -64,9 +68,22 @@ public class GearArm extends Subsystem implements RobotMap{
 	
 	public void joyControl(){
 		System.out.println(-Robot.oi.getShootStick().getZ()*GEAR_ARM_SCALE);
-		talon.set(-0.15 - Robot.oi.getShootStick().getY()*GEAR_ARM_SCALE);
+		talon.set(-0.1 - Robot.oi.getShootStick().getY()*GEAR_ARM_SCALE);
 	}
-
+	
+	public void set(double value){
+		talon.set(value);
+	}
+	
+	public void startTime(){
+		timer.reset();
+		timer.start();
+	}
+	
+	public double getTime(){
+		return timer.get();
+	}
+	
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new JoyControl());
